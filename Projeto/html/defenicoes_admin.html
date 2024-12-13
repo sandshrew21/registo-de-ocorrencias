@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulário - Admin</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .form-container {
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            max-width: 400px;
+            width: 100%;
+        }
+        .form-container h1 {
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: #333;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #555;
+        }
+        .form-group input,
+        .form-group button {
+            width: 95%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+        .form-group input:focus {
+            border-color: #007bff;
+            outline: none;
+        }
+        .form-group button {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .form-group button:hover {
+            background-color: #0056b3;
+        }
+        .menu {
+            margin-bottom: 20px;
+            display: inline-block;
+            padding: 8px 15px;
+            background-color: #007bff;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <a href="#" class="menu">Menu</a>
+        <h1>Alterar Informações</h1>
+        <form action="#" method="post">
+            <div class="form-group">
+                <label for="old-password-admin">Senha antiga</label>
+                <input type="password" id="old-password-admin" name="old-password-admin" placeholder="Digite sua senha antiga" required>
+            </div>
+            <div class="form-group">
+                <label for="old-email">Email antigo</label>
+                <input type="email" id="old-email" name="old-email" placeholder="Digite seu email antigo" required>
+            </div>
+            <div class="form-group">
+                <label for="new-password-admin">Nova senha</label>
+                <input type="text" id="new-password-admin" name="new-password-admin" placeholder="Digite sua nova senha" required>
+            </div>
+            <div class="form-group">
+                <label for="new-email">Novo email</label>
+                <input type="email" id="new-email" name="new-email" placeholder="Digite seu novo email" required>
+            </div>
+            <div class="form-group">
+                <label for="code">Escreva o código</label>
+                <input type="text" id="code" name="code" placeholder="Digite o código" required>
+                <button type="button" style="margin-top: 5px; width: auto;">Enviar código</button>
+            </div>
+            <div class="form-group">
+                <button type="submit">Guardar alterações</button>
+            </div>
+        </form>
+    </div>
+</body>
+</html>
