@@ -1,0 +1,54 @@
+09-Dec-2024 15:05:20.425 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Server version name:   Apache Tomcat/11.0.1
+09-Dec-2024 15:05:20.431 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Server built:          Nov 6 2024 19:08:24 UTC
+09-Dec-2024 15:05:20.431 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Server version number: 11.0.1.0
+09-Dec-2024 15:05:20.431 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log OS Name:               Windows 11
+09-Dec-2024 15:05:20.431 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log OS Version:            10.0
+09-Dec-2024 15:05:20.431 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Architecture:          amd64
+09-Dec-2024 15:05:20.431 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Java Home:             C:\Users\tpaulo\Documents\NetBeansJDKs\zulu21.38.21-ca-jdk21.0.5-win_x64\zulu21.38.21-ca-jdk21.0.5-win_x64
+09-Dec-2024 15:05:20.431 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log JVM Version:           21.0.5+11-LTS
+09-Dec-2024 15:05:20.431 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log JVM Vendor:            Azul Systems, Inc.
+09-Dec-2024 15:05:20.432 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log CATALINA_BASE:         C:\Users\tpaulo\Desktop\Projeto de programação - trabalho de grupo\registo-de-ocorrencias\apache-tomcat-11.0.1
+09-Dec-2024 15:05:20.432 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log CATALINA_HOME:         C:\Users\tpaulo\Desktop\Projeto de programação - trabalho de grupo\registo-de-ocorrencias\apache-tomcat-11.0.1
+09-Dec-2024 15:05:20.460 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Djava.util.logging.config.file=C:\Users\tpaulo\Desktop\Projeto de programação - trabalho de grupo\registo-de-ocorrencias\apache-tomcat-11.0.1\conf\logging.properties
+09-Dec-2024 15:05:20.461 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Djava.util.logging.manager=org.apache.juli.ClassLoaderLogManager
+09-Dec-2024 15:05:20.461 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Djdk.tls.ephemeralDHKeySize=2048
+09-Dec-2024 15:05:20.461 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: --add-opens=java.base/java.lang=ALL-UNNAMED
+09-Dec-2024 15:05:20.461 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: --add-opens=java.base/java.io=ALL-UNNAMED
+09-Dec-2024 15:05:20.461 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: --add-opens=java.base/java.util=ALL-UNNAMED
+09-Dec-2024 15:05:20.461 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: --add-opens=java.base/java.util.concurrent=ALL-UNNAMED
+09-Dec-2024 15:05:20.461 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: --add-opens=java.rmi/sun.rmi.transport=ALL-UNNAMED
+09-Dec-2024 15:05:20.462 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: --enable-native-access=ALL-UNNAMED
+09-Dec-2024 15:05:20.462 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Dcatalina.base=C:\Users\tpaulo\Desktop\Projeto de programação - trabalho de grupo\registo-de-ocorrencias\apache-tomcat-11.0.1
+09-Dec-2024 15:05:20.462 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Dcatalina.home=C:\Users\tpaulo\Desktop\Projeto de programação - trabalho de grupo\registo-de-ocorrencias\apache-tomcat-11.0.1
+09-Dec-2024 15:05:20.462 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Djava.io.tmpdir=C:\Users\tpaulo\Desktop\Projeto de programação - trabalho de grupo\registo-de-ocorrencias\apache-tomcat-11.0.1\temp
+09-Dec-2024 15:05:20.474 INFO [main] org.apache.catalina.core.AprLifecycleListener.lifecycleEvent Loaded Apache Tomcat Native library [2.0.8] using APR version [1.7.4].
+09-Dec-2024 15:05:20.502 INFO [main] org.apache.catalina.core.AprLifecycleListener.initializeSSL OpenSSL successfully initialized [OpenSSL 3.0.14 4 Jun 2024]
+09-Dec-2024 15:05:20.792 INFO [main] org.apache.coyote.AbstractProtocol.init Initializing ProtocolHandler ["http-nio-8080"]
+09-Dec-2024 15:05:20.820 INFO [main] org.apache.catalina.startup.Catalina.load Server initialization in [690] milliseconds
+09-Dec-2024 15:05:20.878 INFO [main] org.apache.catalina.core.StandardService.startInternal Starting service [Catalina]
+09-Dec-2024 15:05:20.878 INFO [main] org.apache.catalina.core.StandardEngine.startInternal Starting Servlet engine: [Apache Tomcat/11.0.1]
+09-Dec-2024 15:05:20.887 INFO [main] org.apache.catalina.startup.HostConfig.deployDescriptor Deploying deployment descriptor [C:\Users\tpaulo\Desktop\Projeto de programação - trabalho de grupo\registo-de-ocorrencias\apache-tomcat-11.0.1\conf\Catalina\localhost\registodeocurrencias.xml]
+09-Dec-2024 15:05:20.901 WARNING [main] org.apache.catalina.startup.HostConfig.deployDescriptor The path attribute with value [/registodeocurrencias] in deployment descriptor [C:\Users\tpaulo\Desktop\Projeto de programação - trabalho de grupo\registo-de-ocorrencias\apache-tomcat-11.0.1\conf\Catalina\localhost\registodeocurrencias.xml] has been ignored
+09-Dec-2024 15:05:21.241 INFO [main] org.apache.catalina.startup.HostConfig.deployDescriptor Deployment of deployment descriptor [C:\Users\tpaulo\Desktop\Projeto de programação - trabalho de grupo\registo-de-ocorrencias\apache-tomcat-11.0.1\conf\Catalina\localhost\registodeocurrencias.xml] has finished in [354] ms
+09-Dec-2024 15:05:21.242 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Deploying web application directory [C:\Users\tpaulo\Desktop\Projeto de programação - trabalho de grupo\registo-de-ocorrencias\apache-tomcat-11.0.1\webapps\docs]
+09-Dec-2024 15:05:21.287 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Deployment of web application directory [C:\Users\tpaulo\Desktop\Projeto de programação - trabalho de grupo\registo-de-ocorrencias\apache-tomcat-11.0.1\webapps\docs] has finished in [44] ms
+09-Dec-2024 15:05:21.287 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Deploying web application directory [C:\Users\tpaulo\Desktop\Projeto de programação - trabalho de grupo\registo-de-ocorrencias\apache-tomcat-11.0.1\webapps\examples]
+09-Dec-2024 15:05:21.931 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Deployment of web application directory [C:\Users\tpaulo\Desktop\Projeto de programação - trabalho de grupo\registo-de-ocorrencias\apache-tomcat-11.0.1\webapps\examples] has finished in [644] ms
+09-Dec-2024 15:05:21.932 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Deploying web application directory [C:\Users\tpaulo\Desktop\Projeto de programação - trabalho de grupo\registo-de-ocorrencias\apache-tomcat-11.0.1\webapps\host-manager]
+09-Dec-2024 15:05:21.973 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Deployment of web application directory [C:\Users\tpaulo\Desktop\Projeto de programação - trabalho de grupo\registo-de-ocorrencias\apache-tomcat-11.0.1\webapps\host-manager] has finished in [41] ms
+09-Dec-2024 15:05:21.973 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Deploying web application directory [C:\Users\tpaulo\Desktop\Projeto de programação - trabalho de grupo\registo-de-ocorrencias\apache-tomcat-11.0.1\webapps\manager]
+09-Dec-2024 15:05:22.014 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Deployment of web application directory [C:\Users\tpaulo\Desktop\Projeto de programação - trabalho de grupo\registo-de-ocorrencias\apache-tomcat-11.0.1\webapps\manager] has finished in [41] ms
+09-Dec-2024 15:05:22.014 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Deploying web application directory [C:\Users\tpaulo\Desktop\Projeto de programação - trabalho de grupo\registo-de-ocorrencias\apache-tomcat-11.0.1\webapps\ROOT]
+09-Dec-2024 15:05:22.043 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Deployment of web application directory [C:\Users\tpaulo\Desktop\Projeto de programação - trabalho de grupo\registo-de-ocorrencias\apache-tomcat-11.0.1\webapps\ROOT] has finished in [29] ms
+09-Dec-2024 15:05:22.047 INFO [main] org.apache.coyote.AbstractProtocol.start Starting ProtocolHandler ["http-nio-8080"]
+09-Dec-2024 15:05:22.076 INFO [main] org.apache.catalina.startup.Catalina.start Server startup in [1255] milliseconds
+09-Dec-2024 15:05:24.957 INFO [http-nio-8080-exec-9] org.apache.catalina.startup.HostConfig.undeploy Undeploying context [/registodeocurrencias]
+09-Dec-2024 15:05:24.979 INFO [http-nio-8080-exec-7] org.apache.catalina.startup.HostConfig.deployDescriptor Deploying deployment descriptor [C:\Users\tpaulo\Desktop\Projeto de programação - trabalho de grupo\registo-de-ocorrencias\apache-tomcat-11.0.1\conf\Catalina\localhost\registodeocurrencias.xml]
+09-Dec-2024 15:05:24.980 WARNING [http-nio-8080-exec-7] org.apache.catalina.startup.HostConfig.deployDescriptor The path attribute with value [/registodeocurrencias] in deployment descriptor [C:\Users\tpaulo\Desktop\Projeto de programação - trabalho de grupo\registo-de-ocorrencias\apache-tomcat-11.0.1\conf\Catalina\localhost\registodeocurrencias.xml] has been ignored
+09-Dec-2024 15:05:25.034 INFO [http-nio-8080-exec-7] org.apache.catalina.startup.HostConfig.deployDescriptor Deployment of deployment descriptor [C:\Users\tpaulo\Desktop\Projeto de programação - trabalho de grupo\registo-de-ocorrencias\apache-tomcat-11.0.1\conf\Catalina\localhost\registodeocurrencias.xml] has finished in [55] ms
+09-Dec-2024 15:05:25.037 INFO [http-nio-8080-exec-6] org.apache.catalina.util.LifecycleBase.start The start() method was called on component [StandardEngine[Catalina].StandardHost[localhost].StandardContext[/registodeocurrencias]] after start() had already been called. The second call will be ignored.
+09-Dec-2024 15:34:23.542 INFO [main] org.apache.catalina.core.StandardServer.await A valid shutdown command was received via the shutdown port. Stopping the Server instance.
+09-Dec-2024 15:34:23.543 INFO [main] org.apache.coyote.AbstractProtocol.pause Pausing ProtocolHandler ["http-nio-8080"]
+09-Dec-2024 15:34:23.549 INFO [main] org.apache.catalina.core.StandardService.stopInternal Stopping service [Catalina]
+09-Dec-2024 15:34:23.563 INFO [main] org.apache.coyote.AbstractProtocol.stop Stopping ProtocolHandler ["http-nio-8080"]
+09-Dec-2024 15:34:23.575 INFO [main] org.apache.coyote.AbstractProtocol.destroy Destroying ProtocolHandler ["http-nio-8080"]
