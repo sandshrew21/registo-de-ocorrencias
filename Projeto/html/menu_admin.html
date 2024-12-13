@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .login-container {
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            max-width: 400px;
+            width: 100%;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .login-container h1 {
+            font-size: 24px;
+            margin: 0 0 20px;
+            color: #333;
+        }
+        .header {
+            width: 100%;
+            display: flex;
+            justify-content: flex-end; /* Aligns profile to the right */
+        }
+        .profile {
+            position: relative;
+            cursor: pointer;
+        }
+        .profile img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            border: 2px solid #ddd;
+        }
+        .dropdown {
+            display: none;
+            position: absolute;
+            top: 60px; 
+            right: 0; 
+            background-color: white;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 5px;
+            overflow: hidden;
+            z-index: 100;
+        }
+        .dropdown a {
+            display: block;
+            text-decoration: none;
+            color: #333;
+            padding: 10px 15px;
+            border-bottom: 1px solid #ddd;
+        }
+        .dropdown a:last-child {
+            border-bottom: none;
+        }
+        .dropdown a:hover {
+            background-color: #f9f9f9;
+        }
+        .button-container {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            width: 100%;
+            margin-top: 20px; 
+        }
+        .button-container button {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            color: #fff;
+            background-color: #A7A9AC;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-align: center;
+        }
+        .button-container button:hover {
+            background-color: #BDBEBF;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <div class="header">
+            <div class="profile" onclick="toggleDropdown()">
+                <img src="../imagens/perfil.png" alt="Perfil">
+                <div class="dropdown" id="dropdownMenu">
+                    <a href="defenicoes_admin.html">Definições</a>
+                    <a href="login.html">Terminar Sessão</a>
+                </div>
+            </div>
+        </div>
+
+        <h1>Menu Admin</h1>
+
+        <div class="button-container">
+            <button onclick="#">Criar uma nova ocorrência</button> <!-- Adicionar criar_ocorrencias -->
+            <button onclick="#">Verificar ocorrência(s) feitas</button> <!-- Adicionar ver_ocorrencias -->
+            <button onclick="#">Ver/Editar tabela de ocorrências</button> <!-- Adicionar tabela_ocurrencias -->
+            <button onclick="#">Ver/Editar tabela de utilizadores</button> <!-- Adicionar tabela_users -->
+        </div>
+
+    </div>
+
+    <script>
+        function toggleDropdown() {
+            const dropdown = document.getElementById('dropdownMenu');
+            dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
+        }
+    </script>
+</body>
+</html>
