@@ -47,33 +47,33 @@ body {
 
 /* Container de botões */
 .btn-container {
-    display: flex; /* Alinha os botões lado a lado */
-    gap: 10px; /* Espaçamento entre os botões */
+    display: flex; 
+    gap: 10px; 
     margin-bottom: 10px;
 }
 
 /* Botões */
 .btn {
-    background-color: #007bff;
+    background-color: #A7A9AC;
     color: white;
     border: none;
     padding: 10px 20px;
     border-radius: 5px;
     cursor: pointer;
-    flex: 1; /* Opcional: faz todos os botões terem o mesmo tamanho */
+    flex: 1; 
 }
 
 .btn:hover {
-    background-color: #0056b3;
+    background-color: #BDBEBF;
 }
 
-/* Contêiner da tabela com rolagem */
+/* tabela com rolagem */
 .tabela-container {
-    max-height: 200px; /* Altura máxima para a rolagem */
-    overflow-y: auto; /* Ativa a rolagem vertical */
-    border: 1px solid #ddd; /* Borda ao redor do contêiner */
-    scrollbar-width: thin; /* Para navegadores como Firefox */
-    scrollbar-color: #888 #f1f1f1; /* Cor da barra e do fundo no Firefox */
+    max-height: 200px; 
+    overflow-y: auto; 
+    border: 1px solid #ddd; 
+    scrollbar-width: thin; 
+    scrollbar-color: #888 #f1f1f1; 
 }
 
 /* Tabela */
@@ -100,7 +100,7 @@ body {
     z-index: 1; /* Garantir que o cabeçalho fique acima das células */
 }
 
-/* Estilizar a barra de rolagem para navegadores WebKit (Chrome, Edge, Safari) */
+
 .tabela-container::-webkit-scrollbar {
     width: 8px; /* Largura da barra de rolagem */
 }

@@ -8,10 +8,11 @@
 </head>
 <body>
     <div class="container">
-        <button class="menu-btn">Menu</button>
+        <div class="btn-container">
+                <button onclick="window.location.href='menu_admin.html'">Menu</button>
+        </div>
         <div class="form">
-            <input type="text" placeholder="Pesquisar..." class="search-bar">
-            <!-- Container para alinhar os botões horizontalmente -->
+            <input type="text" placeholder="Pesquisar..." class="search-bar" id="search-bar">
             <div class="btn-container">
                 <button class="btn">Editar</button>
                 <button class="btn">Eliminar</button>
@@ -30,41 +31,54 @@
                         <th>Password</th>
                     </tr>
                 </thead>
-                <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>João</td>
-                        <td>Joaozinho@gmail.com</td>
-                        <td>*****</td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>Maria</td>
-                        <td>Mariazinha@gmail.com</td>
-                        <td>******</td>
-                    </tr>
-                    <tr>
-                        <td>3</td>
-                        <td>Carlos</td>
-                        <td>Carloszinho@gmail.com</td>
-                        <td>******</td>
-                    </tr>
-                    <tr>
-                        <td>4</td>
-                        <td>Pedro</td>
-                        <td>Pedrozinho@gmail.com</td>
-                        <td>******</td>
-                    </tr>
-                    <tr>
-                        <td>5</td>
-                        <td>Filipa</td>
-                        <td>Flipazinha@gmail.com</td>
-                        <td>******</td>
-                    </tr>
-                    <!-- Adicione mais linhas conforme necessário -->
+                <tbody id="tabela-corpo">
+                    <!-- As linhas serão geradas dinamicamente -->
                 </tbody>
             </table>
         </div>
     </div>
+
+    <script>
+        // Dados fictícios
+        const usuarios = [
+            { id: 1, nome: 'João', email: 'Joaozinho@gmail.com', senha: '*****' },
+            { id: 2, nome: 'Maria', email: 'Mariazinha@gmail.com', senha: '*****' },
+            { id: 3, nome: 'Carlos', email: 'Carloszinho@gmail.com', senha: '*****' },
+            { id: 4, nome: 'Pedro', email: 'Pedrozinho@gmail.com', senha: '*****' },
+            { id: 5, nome: 'Filipa', email: 'Flipazinha@gmail.com', senha: '*****' }
+        ];
+
+        const tabelaCorpo = document.getElementById('tabela-corpo');
+        const searchBar = document.getElementById('search-bar');
+
+        // Função para preencher a tabela
+        function renderTabela(dados) {
+            tabelaCorpo.innerHTML = ''; // Limpa a tabela
+            dados.forEach(usuario => {
+                const linha = `
+                    <tr>
+                        <td>${usuario.id}</td>
+                        <td>${usuario.nome}</td>
+                        <td>${usuario.email}</td>
+                        <td>${usuario.senha}</td>
+                    </tr>
+                `;
+                tabelaCorpo.innerHTML += linha;
+            });
+        }
+
+        // Inicializa a tabela com todos os usuários
+        renderTabela(usuarios);
+
+        // Adiciona evento de pesquisa
+        searchBar.addEventListener('input', () => {
+            const filtro = searchBar.value.toLowerCase();
+            const usuariosFiltrados = usuarios.filter(usuario => 
+                usuario.nome.toLowerCase().includes(filtro) 
+            
+            );
+            renderTabela(usuariosFiltrados); // Atualiza a tabela com os resultados filtrados
+        });
+    </script>
 </body>
 </html>
