@@ -45,6 +45,13 @@ body {
     border-radius: 5px;
 }
 
+/* Container de botões */
+.btn-container {
+    display: flex; /* Alinha os botões lado a lado */
+    gap: 10px; /* Espaçamento entre os botões */
+    margin-bottom: 10px;
+}
+
 /* Botões */
 .btn {
     background-color: #007bff;
@@ -53,7 +60,7 @@ body {
     padding: 10px 20px;
     border-radius: 5px;
     cursor: pointer;
-    margin-bottom: 10px;
+    flex: 1; /* Opcional: faz todos os botões terem o mesmo tamanho */
 }
 
 .btn:hover {
