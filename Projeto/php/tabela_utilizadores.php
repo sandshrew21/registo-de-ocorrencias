@@ -39,7 +39,7 @@ $usuarios_json = json_encode($usuarios);
 <body>
     <div class="container">
         <div class="btn-container">
-            <button onclick="window.location.href='menu_admin.html'">Menu</button>
+            <button onclick="window.location.href='http://localhost/Registo%20Ocorrencias/registo-de-ocorrencias/Projeto/html/menu_admin.html'">Menu</button>
         </div>
         <div class="form">
             <input type="text" placeholder="Pesquisar..." class="search-bar" id="search-bar">
