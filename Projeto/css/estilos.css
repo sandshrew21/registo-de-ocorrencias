@@ -1,0 +1,112 @@
+/* Estilos gerais */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #e5e5e5;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+/* Container principal */
+.container {
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    width: 600px;
+}
+
+/* Botão Menu */
+.menu-btn {
+    display: block;
+    margin-bottom: 20px;
+    background-color: #ccc;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* Formulário lateral */
+.form {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+}
+
+/* Barra de pesquisa */
+.search-bar {
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+/* Botões */
+.btn {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-bottom: 10px;
+}
+
+.btn:hover {
+    background-color: #0056b3;
+}
+
+/* Contêiner da tabela com rolagem */
+.tabela-container {
+    max-height: 200px; /* Altura máxima para a rolagem */
+    overflow-y: auto; /* Ativa a rolagem vertical */
+    border: 1px solid #ddd; /* Borda ao redor do contêiner */
+    scrollbar-width: thin; /* Para navegadores como Firefox */
+    scrollbar-color: #888 #f1f1f1; /* Cor da barra e do fundo no Firefox */
+}
+
+/* Tabela */
+.tabela {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.tabela caption {
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+.tabela th, .tabela td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: left;
+}
+
+.tabela th {
+    background-color: #f4f4f4;
+    position: sticky; /* Fixar o cabeçalho ao rolar */
+    top: 0; /* Posição fixa no topo */
+    z-index: 1; /* Garantir que o cabeçalho fique acima das células */
+}
+
+/* Estilizar a barra de rolagem para navegadores WebKit (Chrome, Edge, Safari) */
+.tabela-container::-webkit-scrollbar {
+    width: 8px; /* Largura da barra de rolagem */
+}
+
+.tabela-container::-webkit-scrollbar-track {
+    background: #f1f1f1; /* Cor do fundo da barra */
+}
+
+.tabela-container::-webkit-scrollbar-thumb {
+    background: #888; /* Cor do "polegar" da barra */
+    border-radius: 5px; /* Borda arredondada */
+}
+
+.tabela-container::-webkit-scrollbar-thumb:hover {
+    background: #555; /* Cor quando o mouse passa por cima */
+}
