@@ -14,9 +14,12 @@
             justify-content: center;
             align-items: center;
             height: 100vh;
+            align-items: flex-start;
+            overflow-y: auto;
         }
+
         .form-container {
-            margin-top: 400px;
+            margin-top: 2rem;
             background-color: #ffffff;
             border-radius: 8px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -25,6 +28,7 @@
             width: 100%;
             justify-content: center;
         }
+
         .form-container h1 {
             display: flex;
             justify-content: center;
@@ -32,21 +36,18 @@
             margin-bottom: 20px;
             color: #333;
         }
-        .butoes_filtro, .menu_button {
+
+        /* Center the filter buttons and bring them closer together */
+        .butoes_filtro {
             margin-top: 15px;
             margin-bottom: 15px;
             display: flex;
-            justify-content: space-between;
+            justify-content: center; /* Center the buttons horizontally */
+            gap: 10px; /* Add gap between buttons to keep them from sticking together */
             padding: 10px 20px;
         }
-        .butoes_filtro label {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 5px;
-            font-weight: bold;
-            color: #555;
-        }
-        /* Filter buttons with same style as other buttons */
+
+        /* Adjust button styles inside the filter */
         .butoes_filtro input,
         .butoes_filtro button {
             background-color: #A7A9AC;
@@ -62,12 +63,13 @@
         .butoes_filtro button:hover {
             background-color: #BDBEBF;
         }
-        
+
         .menu_button {
             display: flex;
             justify-content: flex-start;
             margin-bottom: 15px;
         }
+
         .menu_button button {
             background-color: #A7A9AC;
             color: white;
@@ -77,6 +79,7 @@
             font-size: 16px;
             cursor: pointer;
         }
+
         .menu_button button:hover {
             background-color: #BDBEBF;
         }
@@ -87,9 +90,11 @@
             padding: 15px;
             margin-bottom: 20px;
         }
+
         .status-card h3 {
             margin: 0 0 10px;
         }
+
         .description-box {
             width: 95%;
             height: 100px;
@@ -99,6 +104,7 @@
             padding: 10px;
             margin: 10px 0;
         }
+
     </style>
 </head>
 <body>
