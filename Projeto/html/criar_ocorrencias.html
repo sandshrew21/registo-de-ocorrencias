@@ -18,6 +18,18 @@
             align-items: flex-start;
             overflow-y: auto;  /* Permite rolagem quando o zoom for aplicado */
         }
+        textarea {
+            resize: vertical; /* Allow vertical resizing only */
+            width: 100%; /* Maintain the full width of its container */
+            min-height: 100px; /* Set a minimum height */
+            overflow: auto; /* Enable scrolling for content that exceeds the area */
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+        
         .login-container {
             background-color: #ffffff;
             border-radius: 8px;
@@ -124,6 +136,8 @@
         .form-group button:hover {
             background-color: #BDBEBF; 
         }
+        
+
     </style>
 </head>
 <body>
