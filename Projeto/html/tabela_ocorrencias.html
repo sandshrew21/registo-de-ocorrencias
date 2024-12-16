@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tabela de Ocorrências</title>
+    <style>
+        /* Estilo geral */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        /* Barra superior com o botão de voltar */
+        .top-bar {
+            display: flex;
+            justify-content: space-between;
+            padding: 15px;
+            background-color: #007bff; /* Azul */
+            color: white;
+        }
+
+        .back-btn {
+            background-color: #f39c12;
+            padding: 8px 16px;
+            text-decoration: none;
+            color: white;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        /* Flex container para alinhar o motor de busca à esquerda e a tabela à direita */
+        .main-content {
+            display: flex;
+            margin: 20px;
+        }
+
+        /* Div do filtro de pesquisa à esquerda */
+        .search-container {
+            flex: 1;
+            margin-right: 20px;
+        }
+
+        /* Estilo da tabela */
+        .table-container {
+            flex: 3;
+            max-height: 500px; /* Definir altura máxima */
+            overflow-y: auto; /* Adicionar scroll na tabela */
+            background-color: white;
+            padding: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+
+        th, td {
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f4f4f4;
+            font-weight: bold;
+        }
+
+        /* Estilo dos botões */
+        .btn, .btn-edit {
+            padding: 5px 10px;
+            background-color: #007bff; /* Azul */
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        .btn-edit {
+            background-color: #f39c12; /* Laranja */
+        }
+
+        /* Estilo para o input de pesquisa */
+        #search-input, select {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 4px;
+            border: 1px solid #ddd;
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- Barra superior com botão de voltar -->
+    <div class="top-bar">
+        <a href="#" class="back-btn">Voltar ao Menu</a>
+    </div>
+
+    <div class="main-content">
+        <!-- Filtro de pesquisa à esquerda -->
+        <div class="search-container">
+            <h3>Filtros</h3>
+
+            <label for="search-input">Pesquisar:</label>
+            <input type="text" id="search-input" onkeyup="filterTable()" placeholder="Pesquisar ocorrências...">
+
+            <label for="status-filter">Filtrar por Status:</label>
+            <select id="status-filter" onchange="filterTable()">
+                <option value="all">Todos</option>
+                <option value="Concluído">Concluído</option>
+                <option value="Em Andamento">Em Andamento</option>
+                <option value="Pendente">Pendente</option>
+            </select>
+
+            <label for="urgency-filter">Filtrar por Urgência:</label>
+            <select id="urgency-filter" onchange="filterTable()">
+                <option value="all">Todos</option>
+                <option value="1">1 (Urgente)</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5 (Baixa)</option>
+            </select>
+        </div>
+
+        <!-- Tabela de ocorrências -->
+        <div class="table-container">
+            <h1>Tabela de Ocorrências</h1>
+            <table id="occurrences-table">
+                <thead>
+                    <tr>
+                        <th>Status</th>
+                        <th>Data do Registo</th>
+                        <th>Local</th>
+                        <th>Nível de Urgência</th>
+                        <th>Turno</th>
+                        <th>Descrição</th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Pendente</td>
+                        <td>00/00/0000</td>
+                        <td>Ed.1 Piso 1 Sala Bar</td>
+                        <td>5</td>
+                        <td>Manhã</td>
+                        <td>Exemplo de descrição da ocorrência 1</td>
+                        <td>
+                            <button class="btn btn-edit" onclick="changeStatus(this)" style="display: none;">Marcar como Concluído</button>
+                            <button class="btn" onclick="removeRow(this)" style="display: none;">Remover</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Em Andamento</td>
+                        <td>00/00/0000</td>
+                        <td>Ed.1 Piso R/C Sala Exterior</td>
+                        <td>4</td>
+                        <td>Tarde</td>
+                        <td>Exemplo de descrição da ocorrência 2</td>
+                        <td>
+                            <button class="btn btn-edit" onclick="changeStatus(this)" style="display: none;">Marcar como Concluído</button>
+                            <button class="btn" onclick="removeRow(this)" style="display: none;">Remover</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Concluído</td>
+                        <td>00/00/0000</td>
+                        <td>Ed.1 Piso 1 Sala Informática 2</td>
+                        <td>1</td>
+                        <td>Noite</td>
+                        <td>Exemplo de descrição da ocorrência 3</td>
+                        <td>
+                            <button class="btn btn-edit" onclick="changeStatus(this)" style="display: none;">Marcar como Concluído</button>
+                            <button class="btn" onclick="removeRow(this)" style="display: none;">Remover</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script>
+        // Variável que simula se o usuário é admin ou não
+        var isAdmin = true;  // Altere para 'false' se o usuário não for admin
+
+        // Função para exibir os botões de editar e remover se o usuário for admin
+        function showAdminControls() {
+            // Selecionar todos os botões de editar e remover
+            var editButtons = document.querySelectorAll('.btn-edit');
+            var removeButtons = document.querySelectorAll('.btn');
+
+            if (isAdmin) {
+                // Mostrar os botões de editar e remover para o admin
+                editButtons.forEach(function(button) {
+                    button.style.display = 'inline-block';
+                });
+                removeButtons.forEach(function(button) {
+                    button.style.display = 'inline-block';
+                });
+            }
+        }
+
+        function filterTable() {
+            let statusFilter = document.getElementById('status-filter').value;
+            let urgencyFilter = document.getElementById('urgency-filter').value;
+            let searchQuery = document.getElementById('search-input').value.toLowerCase();
+            let rows = document.querySelectorAll('#occurrences-table tbody tr');
+
+            rows.forEach(row => {
+                let status = row.cells[0].innerText;
+                let urgency = row.cells[3].innerText;
+                let description = row.cells[5].innerText.toLowerCase();
+                let local = row.cells[2].innerText.toLowerCase();
+
+                let statusMatch = (statusFilter === 'all' || status === statusFilter);
+                let urgencyMatch = (urgencyFilter === 'all' || urgency === urgencyFilter);
+                let searchMatch = (description.includes(searchQuery) || local.includes(searchQuery));
+
+                if (statusMatch && urgencyMatch && searchMatch) {
+                    row.style.display = '';
+                } else {
+                    row.style.display = 'none';
+                }
+            });
+        }
+
+        function changeStatus(button) {
+            let row = button.parentElement.parentElement;
+            row.cells[0].innerText = 'Concluído';
+            button.style.display = 'none'; // Esconde o botão de "Marcar como Concluído" depois de clicado
+        }
+
+        function removeRow(button) {
+            let row = button.parentElement.parentElement;
+            row.remove(); // Remove a linha da tabela
+        }
+
+        // Chama a função para mostrar os botões de admin quando a página é carregada
+        showAdminControls();
+    </script>
+
+</body>
+</html>
