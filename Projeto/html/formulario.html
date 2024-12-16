@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Protótipo de Formulário</title>
+    <title>Registo Utilizador</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -68,11 +68,18 @@
             font-size: 12px;
             color: #888;
         }
+        .form-footer a {
+            color: #007bff;
+            text-decoration: none;
+        }
+        .form-footer a:hover {
+            text-decoration: underline;
+        }
     </style>
 </head>
 <body>
     <div class="form-container">
-        <h1>Registo de informações</h1>
+        <h1>Registo de Utilizador</h1>
         <form action="http://localhost/Registo%20Ocorrencias/php/registo.php" method="post">
             <div class="form-group">
                 <label for="name">Nome</label>
@@ -94,6 +101,9 @@
                 <button type="submit">Resgistar</button>
             </div>
         </form>
+        <div class="form-footer">
+            <p>Já tem conta? inicie sessão <a href="login.html">Login</a></p>
+        </div>
         <div class="form-footer">
             <p>Obrigado pela Atenção!</p>
         </div>
