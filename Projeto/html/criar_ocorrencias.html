@@ -35,21 +35,20 @@
             text-align: center;
         }
 
-        /* Menu Button Styling */
         .menu-button {
             padding: 10px 15px;
-            background-color: #007bff;
+            background-color: #A7A9AC;
             color: white;
             text-decoration: none;
             border-radius: 5px;
             cursor: pointer;
             font-size: 16px;
             text-align: center;
-            
             margin-bottom: 20px;
+            width: 50px;
         }
         .menu-button:hover {
-            background-color: #0056b3;
+            background-color: #BDBEBF;
         }
 
         .form-group {
@@ -82,19 +81,27 @@
         }
 
         .form-group select {
-            background-color: #ffffff; /* White background for select */
+            background-color: #ffffff; 
             background-repeat: no-repeat;
-            background-position: right 10px center; /* Position the down arrow */
-            padding-right: 30px; /* Space for the arrow */
-            appearance: none; /* Remove default select styling */
-            -webkit-appearance: none; /* For Safari */
-            -moz-appearance: none; /* For Firefox */
-            border: 1px solid #ddd; /* Border to style the select box */
-            border-radius: 5px; /* Rounded corners */
+            background-position: right 10px center; 
+            padding-right: 30px; 
+            appearance: none; 
+            -webkit-appearance: none; 
+            -moz-appearance: none; 
+            border: 1px solid #ddd; 
+            border-radius: 5px; 
         }
 
         .form-group select[disabled] {
-            color: #757575; /* Disabled dropdown options text color */
+            color: #757575; 
+        }
+
+        .form-group textarea {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
         }
 
         .form-group button {
@@ -102,23 +109,22 @@
             padding: 10px;
             font-size: 16px;
             color: #fff;
-            background-color: #007bff; /* Blue button */
+            background-color: #A7A9AC; 
             border: none;
             border-radius: 5px;
             cursor: pointer;
             text-align: center;
         }
         .form-group button:hover {
-            background-color: #0056b3; /* Darker blue on hover */
+            background-color: #BDBEBF; 
         }
-
     </style>
 </head>
 <body>
     <div class="login-container">
         <h1>Criar Ocorrência</h1>
 
-        <a href="menu_admin.html" class="menu-button" style="align-self: flex-start;">Menu</a>
+        <a href="#" class="menu-button" style="align-self: flex-start;">Menu</a>
 
         <form action="#" method="post">
             <div class="form-group">
@@ -200,7 +206,7 @@
 
             <div class="form-group">
                 <label>Descrição</label>
-                <textarea id="descricao" name="descricao" required rows="4" style="width: 100%; padding: 10px; font-size: 16px; border: 1px solid #ddd; border-radius: 5px;"></textarea>
+                <textarea id="descricao" name="descricao" required rows="4"></textarea>
             </div>
 
             <div class="form-group">
@@ -208,5 +214,20 @@
             </div>
         </form>
     </div>
+    <script>
+    const urlParams = new URLSearchParams(window.location.search);
+    const menuType = urlParams.get('menu'); 
+
+    const menuButton = document.querySelector('.menu-button');
+
+    if (menuType === 'admin') {
+        menuButton.href = 'menu_admin.html'; 
+    } else if (menuType === 'user') {
+        menuButton.href = 'menu_user.html'; 
+    } else {
+        menuButton.href = 'login.html'; 
+    }
+</script>
+
 </body>
 </html>
