@@ -12,8 +12,12 @@
             padding: 0;
             display: flex;
             justify-content: center;
-            align-items: center;
+            /*align-items: center;*/
             height: 100vh;
+
+            align-items: flex-start;
+            overflow-y: auto;  /* Permite rolagem quando o zoom for aplicado */
+
         }
         .form-container {
             background-color: #ffffff;
@@ -22,6 +26,8 @@
             padding: 20px;
             max-width: 400px;
             width: 100%;
+
+            margin-top: 7rem;
         }
         .form-container h1 {
             font-size: 24px;
@@ -50,20 +56,20 @@
             outline: none;
         }
         .form-group button {
-            background-color: #007bff;
+            background-color: #A7A9AC;
             color: #fff;
             border: none;
             cursor: pointer;
             font-size: 16px;
         }
         .form-group button:hover {
-            background-color: #0056b3;
+            background-color: #BDBEBF;
         }
         .menu {
             margin-bottom: 20px;
             display: inline-block;
             padding: 8px 15px;
-            background-color: #007bff;
+            background-color: #A7A9AC; /*#007bff*/
             color: white;
             text-decoration: none;
             border-radius: 5px;

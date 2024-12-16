@@ -12,8 +12,12 @@
             padding: 0;
             display: flex;
             justify-content: center;
-            align-items: center;
+            /*align-items: center;*/
             height: 100vh;
+
+            align-items: flex-start;
+            overflow-y: auto;  /* Permite rolagem quando o zoom for aplicado */
+
         }
         .form-container {
             background-color: #ffffff;
@@ -22,6 +26,8 @@
             padding: 20px;
             max-width: 400px;
             width: 100%;
+
+            margin-top: 5rem;
         }
         .form-container h1 {
             font-size: 24px;
@@ -51,7 +57,7 @@
             outline: none;
         }
         .form-group button {
-            background-color: #007bff;
+            background-color: #A7A9AC;
             color: #fff;
             border: none;
             padding: 10px 15px;
@@ -60,7 +66,7 @@
             font-size: 16px;
         }
         .form-group button:hover {
-            background-color: #0056b3;
+            background-color: #BDBEBF;
         }
         .form-footer {
             margin-top: 10px;
