@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ver Ocorrências</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .form-container {
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            max-width: 500px;
+            width: 100%;
+            justify-content: center;
+        }
+        .form-container h1 {
+        	display: flex;
+        	justify-content: center;
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: #333;
+        }
+        .butoes_filtro, .menu_button{
+        	margin-top: 15px;
+            margin-bottom: 15px;
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 20px;
+        }
+        .butoes_filtro label {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #555;
+        }
+        .butoes_filtro input,
+        .butoes_filtro select {
+            width: 95%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+        
+        .butoes_filtro input:focus{
+            border-color: #007bff;
+            outline: none;
+        }
+        .butoes_filtro button {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .butoes_filtro button:hover {
+            background-color: #0056b3;
+        }
+
+        .status-card {
+            border: 1px solid #ddd;
+            /*border: 1px solid #ddd;*/
+            border-radius: 5px;
+            padding: 15px;
+            margin-bottom: 20px;
+
+        }
+        .status-card h3 {
+            margin: 0 0 10px;
+            /*color: #333;*/
+        }
+        .description-box {
+            width: 95%;
+            height: 100px;
+            background-color: #eee;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 10px;
+            margin: 10px 0;
+        }
+
+
+    </style>
+
+</head>
+<body>
+	<div class="form-container">
+		<h1>Ocorrências</h1>
+			<!-- <div class="button-group">
+                <button type="button">botao</button>
+                <button type="button">botao</button>
+                <button type="button">botao</button>
+        	</div> --> 
+        <div class="menu_button">
+        	<button type="button">Menu</button>
+        </div>
+        <div class="butoes_filtro">
+			    
+			<label><input type="button" value="concluido"></label>
+			<label><input type="button" value="em andamento"></label>
+			<label><input type="button" value="pendente"></label>
+			    
+		</div>
+		<div class="status-card">
+            <h3>Status: Pendente</h3>
+            <p>Data do Registo: 00/00/0000</p>
+            <p>Local: Ed.1 Piso 1 Sala Bar</p>
+            <div class="description-box">Descrição:</div>
+            <p>Nível de Urgência: 5</p>
+            <p>Data: 00/00/0000</p>
+            <p>Turno: Manhã</p>
+        </div>
+        <div class="status-card">
+            <h3>Status: Pendente</h3>
+            <p>Data do Registo: 00/00/0000</p>
+            <p>Local: Ed.1 Piso 1 Sala Bar</p>
+            <div class="description-box">Descrição:</div>
+            <p>Nível de Urgência: 5</p>
+            <p>Data: 00/00/0000</p>
+            <p>Turno: Manhã</p>
+        </div>
+
+
+
+		
+        
+
+
+	</div>
+
+
+</body>
+
+
+</html>
