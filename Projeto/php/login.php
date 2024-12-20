@@ -3,8 +3,8 @@
 // Verificar se o formulário foi enviado
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Conexão com o banco de dados
-    $servername = "localhost"; // Altere para o nome do servidor
-    $username = "root"; // Altere para o nome de usuário do banco de dados
+    $servername = "192.168.12.73"; // Altere para o nome do servidor
+    $username = "registo_ocorrencias"; // Altere para o nome de usuário do banco de dados
     $password = ""; // Altere para a senha do banco de dados
     $dbname = "registo"; // Altere para o nome do seu banco de dados
 
@@ -29,7 +29,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     // Verificar o usuário no banco de dados
-    $sql = "SELECT id, senha FROM login WHERE email = ?";
+    $sql = "SELECT id_formador, senha FROM registo_formadores WHERE email = ?";
     $stmt = $conn->prepare($sql);
 
     if ($stmt === false) {
@@ -48,9 +48,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             echo "Login bem-sucedido!";
             // Aqui você pode iniciar a sessão ou redirecionar para outra página
             session_start();
-            $_SESSION['user_id'] = $row['id'];
-            header("Location: dashboard.php"); // Altere para a página desejada
+            if ($row['id']=9) {
+                $_SESSION['user_id'] = $row['id_formador'];
+                header("Location: ../html/menu_admin.html"); // Altere para a página desejada
+                exit;
+            }else{
+            $_SESSION['user_id'] = $row['id_formador'];
+            header("Location: ../html/menu_user.html"); // Altere para a página desejada
             exit;
+            }
         } else {
             echo "Senha incorreta.";
         }

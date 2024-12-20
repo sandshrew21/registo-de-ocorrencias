@@ -1,9 +1,39 @@
+<?php
+// Conexão com o banco de dados
+$servername = "192.168.12.73";
+$username = "registo_ocorrencias";
+$password = "";
+$dbname = "registo";
+
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+// Verificar a conexão
+if ($conn->connect_error) {
+    die("Conexão falhou: " . $conn->connect_error);
+}
+
+// Consulta para buscar os dados
+$sql = "SELECT status, data_regs, local, descricao, nivel_urgencia, data, turno FROM ocorrencias";
+$result = $conn->query($sql);
+
+// Criar um array para armazenar os dados
+$ocorrencias = [];
+if ($result->num_rows > 0) {
+    while ($row = $result->fetch_assoc()) {
+        $ocorrencias[] = $row;
+    }
+}
+
+// Converte o array de ocorrências em JSON
+$ocorrencias_json = json_encode($ocorrencias);
+?>
+
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ver Ocorrências</title>
+    <title>Ocorrências</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -118,40 +148,57 @@
         <h1>Ocorrências</h1>
 
         <div class="menu_button">
-            <button id="menuButton">Menu</button>
+            <button onclick="window.location.href='http://localhost/Registo%20Ocorrencias/registo-de-ocorrencias/Projeto/html/menu_admin.html'">Menu</button>
         </div>
 
         <div class="butoes_filtro">
-            <label><input type="button" value="Concluído"></label>
+            <label><input type="button" value="Resolvido"></label>
             <label><input type="button" value="Em Andamento"></label>
             <label><input type="button" value="Pendente"></label>
         </div>
 
         <!-- Contêiner com scroll -->
-        <div class="status-container">
-            <div class="status-card">
-                <h3>Status: Pendente</h3>
-                <p>Data do Registo: 00/00/0000</p>
-                <p>Local: Ed.1 Piso 1 Sala Bar</p>
-                <div class="description-box">Descrição:</div>
-                <p>Nível de Urgência: 5</p>
-                <p>Data: 00/00/0000</p>
-                <p>Turno: Manhã</p>
-            </div>
-            <div class="status-card">
-                <h3>Status: Pendente</h3>
-                <p>Data do Registo: 00/00/0000</p>
-                <p>Local: Ed.1 Piso 1 Sala Bar</p>
-                <div class="description-box">Descrição:</div>
-                <p>Nível de Urgência: 5</p>
-                <p>Data: 00/00/0000</p>
-                <p>Turno: Manhã</p>
-            </div>
-            <!-- Adicione mais cards conforme necessário -->
+        <div class="status-container" id="status-container">
+            <!-- Os cartões serão renderizados aqui -->
         </div>
     </div>
 
     <script>
+        // Converte os dados PHP para um array JavaScript
+        const ocorrencias = <?php echo $ocorrencias_json; ?>;
+
+        // Elemento DOM onde os cartões serão renderizados
+        const statusContainer = document.getElementById('status-container');
+
+        // Função para renderizar os cartões
+        function renderOcorrencias(ocorrencias) {
+            statusContainer.innerHTML = '';
+
+            if (ocorrencias.length === 0) {
+                statusContainer.innerHTML = '<p>Nenhuma ocorrência encontrada.</p>';
+                return;
+            }
+
+            ocorrencias.forEach(ocorrencia => {
+                const card = `
+                    <div class="status-card">
+                        <h3>Status: ${ocorrencia.status}</h3>
+                        <p>Data do Registo: ${ocorrencia.data_regs}</p>
+                        <p>Local: ${ocorrencia.local}</p>
+                        <div class="description-box">Descrição: ${ocorrencia.descricao}</div>
+                        <p>Nível de Urgência: ${ocorrencia.nivel_urgencia}</p>
+                        <p>Data: ${ocorrencia.data}</p>
+                        <p>Turno: ${ocorrencia.turno}</p>
+                    </div>
+                `;
+                statusContainer.insertAdjacentHTML('beforeend', card);
+            });
+        }
+
+        // Renderiza as ocorrências ao carregar a página
+        renderOcorrencias(ocorrencias);
+
+        // Configura o botão do menu
         const urlParams = new URLSearchParams(window.location.search);
         const menuType = urlParams.get('menu'); 
 
@@ -167,3 +214,8 @@
     </script>
 </body>
 </html>
+
+<?php
+// Fecha a conexão com o banco de dados
+$conn->close();
+?>
