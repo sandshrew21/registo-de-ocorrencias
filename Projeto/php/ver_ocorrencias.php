@@ -148,7 +148,7 @@ $ocorrencias_json = json_encode($ocorrencias);
         <h1>Ocorrências</h1>
 
         <div class="menu_button">
-            <button id="menuButton">Menu</button>
+            <button onclick="window.location.href='http://localhost/Registo%20Ocorrencias/registo-de-ocorrencias/Projeto/html/menu_admin.html'">Menu</button>
         </div>
 
         <div class="butoes_filtro">

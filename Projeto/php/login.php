@@ -29,7 +29,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     // Verificar o usuário no banco de dados
-    $sql = "SELECT id, senha FROM login WHERE email = $email";
+    $sql = "SELECT id_formador, senha FROM registo_formadores WHERE email = ?";
     $stmt = $conn->prepare($sql);
 
     if ($stmt === false) {
@@ -48,9 +48,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             echo "Login bem-sucedido!";
             // Aqui você pode iniciar a sessão ou redirecionar para outra página
             session_start();
-            $_SESSION['user_id'] = $row['id'];
-            header("Location: dashboard.php"); // Altere para a página desejada
+            if ($row['id']=9) {
+                $_SESSION['user_id'] = $row['id_formador'];
+                header("Location: ../html/menu_admin.html"); // Altere para a página desejada
+                exit;
+            }else{
+            $_SESSION['user_id'] = $row['id_formador'];
+            header("Location: ../html/menu_user.html"); // Altere para a página desejada
             exit;
+            }
         } else {
             echo "Senha incorreta.";
         }
