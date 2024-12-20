@@ -47,7 +47,7 @@
 
         // Função para preencher a tabela
         function renderTabela(dados) {
-            tabelaCorpo.innerHTML = ''; // Limpa a tabela
+            tabelaCorpo.innerHTML = '';
             dados.forEach(usuario => {
                 const linha = `
                     <tr>
@@ -71,7 +71,7 @@
                 usuario.nome.toLowerCase().includes(filtro) 
             
             );
-            renderTabela(usuariosFiltrados); // Atualiza a tabela com os resultados filtrados
+            renderTabela(usuariosFiltrados); 
         });
     </script>
 </body>

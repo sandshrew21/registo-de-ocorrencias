@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Menu</title>
+    <title>Menu com Dashboards</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -11,55 +11,57 @@
             margin: 0;
             padding: 0;
             display: flex;
-            justify-content: center;
             height: 100vh;
-            overflow-y: auto;  /* Permite rolagem quando o zoom for aplicado */
-            align-items: center;
-
         }
-        .login-container {
+
+        .container {
+            display: grid;
+            grid-template-columns: 300px 1fr; /* Menu ocupa 300px, restante para dashboards */
+            gap: 20px;
+            width: 100%;
+            padding: 20px;
+        }
+
+        .menu {
             background-color: #ffffff;
             border-radius: 8px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             padding: 20px;
-            max-width: 400px;
-            width: 100%;
-            position: relative;
             display: flex;
             flex-direction: column;
             align-items: center;
         }
-        .login-container h1 {
+
+        .menu h1 {
             font-size: 24px;
             margin: 0 0 20px;
             color: #333;
         }
-        .header {
-            width: 100%;
-            display: flex;
-            justify-content: flex-end; /* Aligns profile to the right */
-        }
+
         .profile {
             position: relative;
             cursor: pointer;
         }
+
         .profile img {
             width: 50px;
             height: 50px;
             border-radius: 50%;
             border: 2px solid #ddd;
         }
+
         .dropdown {
             display: none;
             position: absolute;
-            top: 60px; 
-            right: 0; 
+            top: 60px;
+            right: 0;
             background-color: white;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             border-radius: 5px;
             overflow: hidden;
             z-index: 100;
         }
+
         .dropdown a {
             display: block;
             text-decoration: none;
@@ -67,19 +69,23 @@
             padding: 10px 15px;
             border-bottom: 1px solid #ddd;
         }
+
         .dropdown a:last-child {
             border-bottom: none;
         }
+
         .dropdown a:hover {
             background-color: #f9f9f9;
         }
+
         .button-container {
             display: flex;
             flex-direction: column;
             gap: 10px;
             width: 100%;
-            margin-top: 20px; 
+            margin-top: 20px;
         }
+
         .button-container button {
             width: 100%;
             padding: 10px;
@@ -91,14 +97,110 @@
             cursor: pointer;
             text-align: center;
         }
+
         .button-container button:hover {
             background-color: #BDBEBF;
         }
+
+        .dashboard-container {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr); 
+            gap: 10px;
+            position: relative;
+        }
+
+        .dashboard {
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            font-size: 16px;
+            color: #333;
+            height: 100px; 
+            transition: transform 0.2s ease-in-out;
+        }
+
+        .dashboard-container .dashboard:nth-child(-n+5):hover {
+    transform: scale(1.05);
+}
+
+
+        /* Dashboard especial para gráfico */
+        .chart-wrapper {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-between;
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            height: 400px;
+            grid-column: span 5;
+            transition: none;
+        }
+
+        .chart-content {
+            flex: 4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding-right: 20px;
+        }
+
+        .year-content {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 8px;
+            height: 100%; 
+        }
+
+        .year-label {
+            font-size: 9vw; 
+            font-weight: bold;
+            color: #A7A9AC;
+            transform: rotate(90deg);
+            white-space: nowrap;
+        }
+
+        .dashboard:nth-child(1) {
+            background-color: #e71b23; 
+            color: #fff;
+        }
+
+        .dashboard:nth-child(2) {
+            background-color: #ff7f27; 
+            color: #fff;
+        }
+
+        .dashboard:nth-child(3) {
+            background-color: #F0E300; 
+            color: #fff;
+        }
+
+        .dashboard:nth-child(4) {
+            background-color: #b5e61d; 
+            color: #fff;
+        }
+
+        .dashboard:nth-child(5) {
+            background-color: #8ecada; 
+            color: #fff;
+        }
+
     </style>
 </head>
 <body>
-    <div class="login-container">
-        <div class="header">
+    <div class="container">
+        
+        <!-- Menu -->
+        <div class="menu">
             <div class="profile" onclick="toggleDropdown()">
                 <img src="../imagens/perfil.png" alt="Perfil">
                 <div class="dropdown" id="dropdownMenu">
@@ -106,25 +208,68 @@
                     <a href="login.html">Terminar Sessão</a>
                 </div>
             </div>
+
+            <h1>Menu Admin</h1>
+
+            <div class="button-container">
+                <button onclick="window.location.href='criar_ocorrencias.html?menu=admin'">Criar nova ocorrência</button>
+                <button onclick="window.location.href='ver_ocorrencias.html?menu=admin'">Ver ocorrências</button>
+                <button onclick="window.location.href='tabela_ocorrencias.html'">Ver/Editar ocorrências</button>
+                <button onclick="window.location.href='tabela_utilizadores.php'">Ver/Editar utilizadores</button>
+            </div>
         </div>
 
-        <h1>Menu Admin</h1>
-
-        <div class="button-container">
-            <button onclick="window.location.href='criar_ocorrencias.html?menu=admin'">Criar uma nova ocorrência</button>
-            <button onclick="window.location.href='ver_ocorrencias.html?menu=admin'">Verificar ocorrência(s) feita(s)</button>
-            <button onclick="window.location.href='tabela_ocorrencias.html'">Ver/Editar tabela de ocorrências</button>
-            <button onclick="window.location.href='http://localhost/Registo%20Ocorrencias/registo-de-ocorrencias/Projeto/php/tabela_utilizadores.php'">Ver/Editar tabela de utilizadores</button>
+        <div class="dashboard-container">
+            <div class="dashboard">Extremamente Urgente</div>
+            <div class="dashboard">Muito Urgente</div>
+            <div class="dashboard">Urgente</div>
+            <div class="dashboard">Pouco Urgente</div>
+            <div class="dashboard">Não urgente</div>
+            
+            <div class="dashboard chart-wrapper">
+                <div class="chart-content">
+                    <canvas id="myChart"></canvas>
+                </div>
+                <div class="year-content">
+                    <div class="year-label">0000</div>
+                </div>
+            </div>
         </div>
-
-
     </div>
 
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script>
         function toggleDropdown() {
             const dropdown = document.getElementById('dropdownMenu');
             dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
         }
+
+        const ctx = document.getElementById('myChart');
+        new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+                datasets: [
+                    {
+                        label: 'Ocorrências',
+                        data: [12, 19, 3, 5, 2, 3, 8, 15, 9, 12, 7, 10],
+                        borderWidth: 2,
+                        borderColor: 'rgba(146,39,143,255)',
+                        backgroundColor: 'rgba(146,39,143,0.2)',
+                    },
+                    {
+                        label: 'Concluídas',
+                        data: [1, 9, 5, 2, 3, 15, 50, 60, 35, 40, 20, 25],
+                        borderWidth: 2,
+                        borderColor: 'rgba(15,175,161,255)',
+                        backgroundColor: 'rgba(15,175,161,0.2)',
+                    }
+                ]
+            },
+            options: { scales: { y: { beginAtZero: true } } }
+        });
+
+        document.querySelector('.year-label').textContent = new Date().getFullYear();
     </script>
 </body>
 </html>
