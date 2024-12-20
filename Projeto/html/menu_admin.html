@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Menu com Dashboards</title>
     <style>
+        /* Estilo permanece igual ao original */
         body {
             font-family: Arial, sans-serif;
             background-color: #f4f4f9;
@@ -125,11 +126,9 @@
         }
 
         .dashboard-container .dashboard:nth-child(-n+5):hover {
-    transform: scale(1.05);
-}
+            transform: scale(1.05);
+        }
 
-
-        /* Dashboard especial para gráfico */
         .chart-wrapper {
             display: flex;
             flex-direction: row;
@@ -193,12 +192,10 @@
             background-color: #8ecada; 
             color: #fff;
         }
-
     </style>
 </head>
 <body>
     <div class="container">
-        
         <!-- Menu -->
         <div class="menu">
             <div class="profile" onclick="toggleDropdown()">
@@ -211,14 +208,13 @@
 
             <h1>Menu Admin</h1>
 
-        <div class="button-container">
-            <button onclick="window.location.href='criar_ocorrencias.html?menu=admin'">Criar uma nova ocorrência</button>
-            <button onclick="window.location.href='../php/ver_ocorrencias.php'">Verificar ocorrência(s) feita(s)</button>
-            <button onclick="window.location.href='../php/tabela_ocorrencias.php'">Ver/Editar tabela de ocorrências</button>
-            <button onclick="window.location.href='../php/tabela_utilizadores.php'">Ver/Editar tabela de utilizadores</button>
+            <div class="button-container">
+                <button onclick="window.location.href='criar_ocorrencias.html?menu=admin'">Criar uma nova ocorrência</button>
+                <button onclick="window.location.href='../php/ver_ocorrencias.php'">Verificar ocorrência(s) feita(s)</button>
+                <button onclick="window.location.href='../php/tabela_ocorrencias.php'">Ver/Editar tabela de ocorrências</button>
+                <button onclick="window.location.href='../php/tabela_utilizadores.php'">Ver/Editar tabela de utilizadores</button>
             </div>
         </div>
-
 
         <div class="dashboard-container">
             <div class="dashboard">Extremamente Urgente</div>
@@ -235,7 +231,6 @@
                     <div class="year-label">0000</div>
                 </div>
             </div>
-
         </div>
     </div>
 
@@ -246,32 +241,47 @@
             dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
         }
 
-        const ctx = document.getElementById('myChart');
-        new Chart(ctx, {
-            type: 'line',
-            data: {
-                labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
-                datasets: [
-                    {
-                        label: 'Ocorrências',
-                        data: [12, 19, 3, 5, 2, 3, 8, 15, 9, 12, 7, 10],
-                        borderWidth: 2,
-                        borderColor: 'rgba(146,39,143,255)',
-                        backgroundColor: 'rgba(146,39,143,0.2)',
-                    },
-                    {
-                        label: 'Concluídas',
-                        data: [1, 9, 5, 2, 3, 15, 50, 60, 35, 40, 20, 25],
-                        borderWidth: 2,
-                        borderColor: 'rgba(15,175,161,255)',
-                        backgroundColor: 'rgba(15,175,161,0.2)',
-                    }
-                ]
-            },
-            options: { scales: { y: { beginAtZero: true } } }
-        });
+        async function fetchChartData() {
+            try {
+                const response = await fetch('../php/api_chart_data.php'); // Ajuste o endpoint para sua API
+                const data = await response.json();
 
-        document.querySelector('.year-label').textContent = new Date().getFullYear();
+                const labels = data.map(item => item.mes);
+                const ocorrencias = data.map(item => item.ocorrencias);
+                const concluidas = data.map(item => item.concluidas);
+
+                const ctx = document.getElementById('myChart');
+                new Chart(ctx, {
+                    type: 'line',
+                    data: {
+                        labels,
+                        datasets: [
+                            {
+                                label: 'Ocorrências',
+                                data: ocorrencias,
+                                borderWidth: 2,
+                                borderColor: 'rgba(146,39,143,255)',
+                                backgroundColor: 'rgba(146,39,143,0.2)',
+                            },
+                            {
+                                label: 'Concluídas',
+                                data: concluidas,
+                                borderWidth: 2,
+                                borderColor: 'rgba(15,175,161,255)',
+                                backgroundColor: 'rgba(15,175,161,0.2)',
+                            }
+                        ]
+                    },
+                    options: { scales: { y: { beginAtZero: true } } }
+                });
+
+                document.querySelector('.year-label').textContent = new Date().getFullYear();
+            } catch (error) {
+                console.error('Erro ao buscar dados:', error);
+            }
+        }
+
+        fetchChartData();
     </script>
 </body>
 </html>
