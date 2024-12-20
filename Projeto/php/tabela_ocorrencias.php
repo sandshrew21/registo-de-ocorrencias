@@ -102,7 +102,7 @@
 <div class="container">
     <!-- Barra superior com botão de voltar -->
     <div class="top-bar">
-        <a href="menu_admin.html" class="back-btn">Voltar ao Menu</a>
+        <a href="../html/menu_admin.html" class="back-btn">Voltar ao Menu</a>
         <h1>Tabela de Ocorrências</h1>
     </div>
 
@@ -147,21 +147,21 @@
             <tbody>
                 <?php
                     // Conexão com o banco de dados
-                    $conn = new mysqli('localhost', 'usuario', 'senha', 'nome_do_banco');
+                    $conn = new mysqli('192.168.12.73', 'registo_ocorrencias', '', 'registo');
                     if ($conn->connect_error) {
                         die("Falha na conexão: " . $conn->connect_error);
                     }
 
-                    $sql = "SELECT status, data_registo, local, urgencia, turno, descricao FROM ocorrencias";
+                    $sql = "SELECT status, data_regs, local, nivel_urgencia, turno, descricao FROM ocorrencias";
                     $result = $conn->query($sql);
 
                     if ($result->num_rows > 0) {
                         while ($row = $result->fetch_assoc()) {
                             echo "<tr>
                                 <td>{$row['status']}</td>
-                                <td>{$row['data_registo']}</td>
+                                <td>{$row['data_regs']}</td>
                                 <td>{$row['local']}</td>
-                                <td>{$row['urgencia']}</td>
+                                <td>{$row['nivel_urgencia']}</td>
                                 <td>{$row['turno']}</td>
                                 <td>{$row['descricao']}</td>
                                 <td>
