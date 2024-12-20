@@ -48,7 +48,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             echo "Login bem-sucedido!";
             // Aqui você pode iniciar a sessão ou redirecionar para outra página
             session_start();
-            if ($row['id']=9) {
+            if ($row['id_formador']==9) {
                 $_SESSION['user_id'] = $row['id_formador'];
                 header("Location: ../html/menu_admin.html"); // Altere para a página desejada
                 exit;
