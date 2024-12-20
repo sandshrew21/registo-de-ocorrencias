@@ -29,7 +29,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     // Verificar o usuário no banco de dados
-    $sql = "SELECT id, senha FROM login WHERE email = ?";
+    $sql = "SELECT id, senha FROM login WHERE email = $email";
     $stmt = $conn->prepare($sql);
 
     if ($stmt === false) {
