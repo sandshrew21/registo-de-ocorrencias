@@ -15,7 +15,7 @@
             align-items: center;
             height: 100vh;
             align-items: flex-start;
-            overflow-y: auto;
+            overflow: hidden; /* Evita scroll na página principal */
         }
 
         .form-container {
@@ -37,17 +37,15 @@
             color: #333;
         }
 
-        /* Center the filter buttons and bring them closer together */
         .butoes_filtro {
             margin-top: 15px;
             margin-bottom: 15px;
             display: flex;
-            justify-content: center; /* Center the buttons horizontally */
-            gap: 10px; /* Add gap between buttons to keep them from sticking together */
+            justify-content: center;
+            gap: 10px;
             padding: 10px 20px;
         }
 
-        /* Adjust button styles inside the filter */
         .butoes_filtro input,
         .butoes_filtro button {
             background-color: #A7A9AC;
@@ -84,6 +82,15 @@
             background-color: #BDBEBF;
         }
 
+        .status-container {
+            max-height: 400px; /* Altura máxima do contêiner */
+            overflow-y: auto; /* Scroll vertical */
+            border: 1px solid #ddd;
+            padding: 10px;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+        }
+
         .status-card {
             border: 1px solid #ddd;
             border-radius: 5px;
@@ -104,48 +111,47 @@
             padding: 10px;
             margin: 10px 0;
         }
-
     </style>
 </head>
 <body>
     <div class="form-container">
         <h1>Ocorrências</h1>
 
-        <!-- Menu button -->
         <div class="menu_button">
             <button id="menuButton">Menu</button>
         </div>
 
-        <!-- Filter buttons with the same styling as the other buttons -->
         <div class="butoes_filtro">
             <label><input type="button" value="Concluído"></label>
             <label><input type="button" value="Em Andamento"></label>
             <label><input type="button" value="Pendente"></label>
         </div>
 
-        <!-- Status cards -->
-        <div class="status-card">
-            <h3>Status: Pendente</h3>
-            <p>Data do Registo: 00/00/0000</p>
-            <p>Local: Ed.1 Piso 1 Sala Bar</p>
-            <div class="description-box">Descrição:</div>
-            <p>Nível de Urgência: 5</p>
-            <p>Data: 00/00/0000</p>
-            <p>Turno: Manhã</p>
-        </div>
-        <div class="status-card">
-            <h3>Status: Pendente</h3>
-            <p>Data do Registo: 00/00/0000</p>
-            <p>Local: Ed.1 Piso 1 Sala Bar</p>
-            <div class="description-box">Descrição:</div>
-            <p>Nível de Urgência: 5</p>
-            <p>Data: 00/00/0000</p>
-            <p>Turno: Manhã</p>
+        <!-- Contêiner com scroll -->
+        <div class="status-container">
+            <div class="status-card">
+                <h3>Status: Pendente</h3>
+                <p>Data do Registo: 00/00/0000</p>
+                <p>Local: Ed.1 Piso 1 Sala Bar</p>
+                <div class="description-box">Descrição:</div>
+                <p>Nível de Urgência: 5</p>
+                <p>Data: 00/00/0000</p>
+                <p>Turno: Manhã</p>
+            </div>
+            <div class="status-card">
+                <h3>Status: Pendente</h3>
+                <p>Data do Registo: 00/00/0000</p>
+                <p>Local: Ed.1 Piso 1 Sala Bar</p>
+                <div class="description-box">Descrição:</div>
+                <p>Nível de Urgência: 5</p>
+                <p>Data: 00/00/0000</p>
+                <p>Turno: Manhã</p>
+            </div>
+            <!-- Adicione mais cards conforme necessário -->
         </div>
     </div>
 
     <script>
-        // Handle menu button redirect based on query parameter
         const urlParams = new URLSearchParams(window.location.search);
         const menuType = urlParams.get('menu'); 
 
