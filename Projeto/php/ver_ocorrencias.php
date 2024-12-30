@@ -148,7 +148,7 @@ $ocorrencias_json = json_encode($ocorrencias);
         <h1>Ocorrências</h1>
 
         <div class="menu_button">
-            <button onclick="window.location.href='http://localhost/Registo%20Ocorrencias/registo-de-ocorrencias/Projeto/html/menu_admin.html'">Menu</button>
+            <button onclick="window.location.href = '../html/login.html'">Menu</button>
         </div>
 
         <div class="butoes_filtro">
@@ -204,15 +204,16 @@ $ocorrencias_json = json_encode($ocorrencias);
         const urlParams = new URLSearchParams(window.location.search);
         const menuType = urlParams.get('menu'); 
 
-        const menuButton = document.getElementById('menuButton');
+        const menuButton = document.querySelector('.menu_button button');
 
         if (menuType === 'admin') {
-            menuButton.onclick = () => window.location.href = 'menu_admin.html';
+            menuButton.onclick = () => window.location.href = '../html/menu_admin.html';
         } else if (menuType === 'user') {
-            menuButton.onclick = () => window.location.href = 'menu_user.html';
+            menuButton.onclick = () => window.location.href = '../html/menu_user.html';
         } else {
-            menuButton.onclick = () => window.location.href = 'login.html';
+            menuButton.onclick = () => window.location.href = '../html/login.html';
         }
+
     </script>
 </body>
 </html>
