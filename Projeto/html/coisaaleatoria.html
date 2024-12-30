@@ -3,9 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Menu Administrador</title>
+    <title>Menu com Dashboards</title>
     <style>
-        /* Todo o estilo permanece o mesmo */
         body {
             font-family: Arial, sans-serif;
             background-color: #f4f4f9;
@@ -17,7 +16,7 @@
 
         .container {
             display: grid;
-            grid-template-columns: 300px 1fr;
+            grid-template-columns: 300px 1fr; /* Menu ocupa 300px, restante para dashboards */
             gap: 20px;
             width: 100%;
             padding: 20px;
@@ -105,39 +104,32 @@
 
         .dashboard-container {
             display: grid;
-            grid-template-columns: repeat(5, 1fr);
+            grid-template-columns: repeat(5, 1fr); 
             gap: 10px;
             position: relative;
         }
 
-        .dashboard-button {
+        .dashboard {
             background-color: #ffffff;
             border-radius: 8px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             padding: 10px;
             display: flex;
-            flex-direction: column;
             justify-content: center;
             align-items: center;
             text-align: center;
             font-size: 16px;
             color: #333;
-            height: 100px;
-            cursor: pointer;
-            border: none;
+            height: 100px; 
             transition: transform 0.2s ease-in-out;
         }
 
-        .dashboard-button:hover {
-            transform: scale(1.05);
-        }
+        .dashboard-container .dashboard:nth-child(-n+5):hover {
+    transform: scale(1.05);
+}
 
-        .counter {
-            font-size: 24px;
-            font-weight: bold;
-            margin-top: 10px;
-        }
 
+        /* Dashboard especial para gráfico */
         .chart-wrapper {
             display: flex;
             flex-direction: row;
@@ -166,45 +158,48 @@
             justify-content: center;
             align-items: center;
             border-radius: 8px;
-            height: 100%;
+            height: 100%; 
         }
 
         .year-label {
-            font-size: 9vw;
+            font-size: 9vw; 
             font-weight: bold;
             color: #A7A9AC;
             transform: rotate(90deg);
             white-space: nowrap;
         }
 
-        .dashboard-button:nth-child(1) {
-            background-color: #e71b23;
+        .dashboard:nth-child(1) {
+            background-color: #e71b23; 
             color: #fff;
         }
 
-        .dashboard-button:nth-child(2) {
-            background-color: #ff7f27;
+        .dashboard:nth-child(2) {
+            background-color: #ff7f27; 
             color: #fff;
         }
 
-        .dashboard-button:nth-child(3) {
-            background-color: #F0E300;
+        .dashboard:nth-child(3) {
+            background-color: #F0E300; 
             color: #fff;
         }
 
-        .dashboard-button:nth-child(4) {
-            background-color: #b5e61d;
+        .dashboard:nth-child(4) {
+            background-color: #b5e61d; 
             color: #fff;
         }
 
-        .dashboard-button:nth-child(5) {
-            background-color: #8ecada;
+        .dashboard:nth-child(5) {
+            background-color: #8ecada; 
             color: #fff;
         }
+
     </style>
 </head>
 <body>
     <div class="container">
+        
+        <!-- Menu -->
         <div class="menu">
             <div class="profile" onclick="toggleDropdown()">
                 <img src="../imagens/perfil.png" alt="Perfil">
@@ -213,36 +208,26 @@
                     <a href="login.html">Terminar Sessão</a>
                 </div>
             </div>
+
             <h1>Menu Admin</h1>
-            <div class="button-container">
-                <button onclick="window.location.href='criar_ocorrencias.html?menu=admin'">Criar uma nova ocorrência</button>
-                <button onclick="window.location.href='../php/ver_ocorrencias.php?menu=admin'">Verificar ocorrência(s) feita(s)</button>
-                <button onclick="window.location.href='../php/tabela_ocorrencias.php'">Ver/Editar tabela de ocorrências</button>
-                <button onclick="window.location.href='../php/tabela_utilizadores.php'">Ver/Editar tabela de utilizadores</button>
+
+        <div class="button-container">
+            <button onclick="window.location.href='criar_ocorrencias.html?menu=admin'">Criar uma nova ocorrência</button>
+            <button onclick="window.location.href='../php/ver_ocorrencias.php'">Verificar ocorrência(s) feita(s)</button>
+            <button onclick="window.location.href='../php/tabela_ocorrencias.php'">Ver/Editar tabela de ocorrências</button>
+            <button onclick="window.location.href='../php/tabela_utilizadores.php'">Ver/Editar tabela de utilizadores</button>
             </div>
         </div>
+
+
         <div class="dashboard-container">
-            <button class="dashboard-button">
-                <span>Extremamente Urgente</span>
-                <div class="counter" id="extremamente-urgente">0</div>
-            </button>
-            <button class="dashboard-button">
-                <span>Muito Urgente</span>
-                <div class="counter" id="muito-urgente">0</div>
-            </button>
-            <button class="dashboard-button">
-                <span>Urgente</span>
-                <div class="counter" id="urgente">0</div>
-            </button>
-            <button class="dashboard-button">
-                <span>Pouco Urgente</span>
-                <div class="counter" id="pouco-urgente">0</div>
-            </button>
-            <button class="dashboard-button">
-                <span>Não Urgente</span>
-                <div class="counter" id="nao-urgente">0</div>
-            </button>
-            <div class="chart-wrapper">
+            <div class="dashboard">Extremamente Urgente</div>
+            <div class="dashboard">Muito Urgente</div>
+            <div class="dashboard">Urgente</div>
+            <div class="dashboard">Pouco Urgente</div>
+            <div class="dashboard">Não urgente</div>
+            
+            <div class="dashboard chart-wrapper">
                 <div class="chart-content">
                     <canvas id="myChart"></canvas>
                 </div>
@@ -250,71 +235,43 @@
                     <div class="year-label">0000</div>
                 </div>
             </div>
+
         </div>
     </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script>
         function toggleDropdown() {
             const dropdown = document.getElementById('dropdownMenu');
             dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
         }
 
-        async function fetchDashboardData() {
-            try {
-                const response = await fetch('../php/api_dashboard_data.php'); // API para buscar os dados
-                const data = await response.json();
-
-                document.getElementById('extremamente-urgente').textContent = data.extremamenteUrgente || 0;
-                document.getElementById('muito-urgente').textContent = data.muitoUrgente || 0;
-                document.getElementById('urgente').textContent = data.urgente || 0;
-                document.getElementById('pouco-urgente').textContent = data.poucoUrgente || 0;
-                document.getElementById('nao-urgente').textContent = data.naoUrgente || 0;
-            } catch (error) {
-                console.error('Erro ao buscar dados:', error);
-            }
-        }
-
-        async function fetchChartData() {
-            try {
-                const response = await fetch('../php/api_chart_data.php');
-                const data = await response.json();
-
-                const labels = data.map(item => item.mes);
-                const ocorrencias = data.map(item => item.ocorrencias);
-                const concluidas = data.map(item => item.concluidas);
-
-                const ctx = document.getElementById('myChart');
-                new Chart(ctx, {
-                    type: 'line',
-                    data: {
-                        labels,
-                        datasets: [
-                            {
-                                label: 'Ocorrências',
-                                data: ocorrencias,
-                                borderWidth: 2,
-                                borderColor: 'rgba(146,39,143,255)',
-                                backgroundColor: 'rgba(146,39,143,0.2)',
-                            },
-                            {
-                                label: 'Concluídas',
-                                data: concluidas,
-                                borderWidth: 2,
-                                borderColor: 'rgba(15,175,161,255)',
-                                backgroundColor: 'rgba(15,175,161,0.2)',
-                            }
-                        ]
+        const ctx = document.getElementById('myChart');
+        new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'],
+                datasets: [
+                    {
+                        label: 'Ocorrências',
+                        data: [12, 19, 3, 5, 2, 3, 8, 15, 9, 12, 7, 10],
+                        borderWidth: 2,
+                        borderColor: 'rgba(146,39,143,255)',
+                        backgroundColor: 'rgba(146,39,143,0.2)',
                     },
-                    options: { scales: { y: { beginAtZero: true } } }
-                });
+                    {
+                        label: 'Ocorrência Concluídas',
+                        data: [1, 9, 5, 2, 3, 15, 50, 60, 35, 40, 20, 25],
+                        borderWidth: 2,
+                        borderColor: 'rgba(15,175,161,255)',
+                        backgroundColor: 'rgba(15,175,161,0.2)',
+                    }
+                ]
+            },
+            options: { scales: { y: { beginAtZero: true } } }
+        });
 
-                document.querySelector('.year-label').textContent = new Date().getFullYear();
-            } catch (error) {
-                console.error('Erro ao buscar dados:', error);
-            }
-        }
-
-        fetchDashboardData();
-        fetchChartData();
+        document.querySelector('.year-label').textContent = new Date().getFullYear();
     </script>
 </body>
 </html>
