@@ -1,6 +1,6 @@
 <?php
 // Conexão com o banco de dados
-$servername = "192.168.12.73";
+$servername = "localhost";
 $username = "registo_ocorrencias";
 $password = "";
 $dbname = "registo";
