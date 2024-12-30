@@ -4,7 +4,7 @@
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Conexão com o banco de dados
     $servername = "localhost"; // Altere para o nome do servidor
-    $username = "registo_ocorrencias"; // Altere para o nome de usuário do banco de dados
+    $username = "root"; // Altere para o nome de usuário do banco de dados
     $password = ""; // Altere para a senha do banco de dados
     $dbname = "registo"; // Altere para o nome do seu banco de dados
 

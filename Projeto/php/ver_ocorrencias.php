@@ -1,7 +1,7 @@
 <?php
 // Conexão com o banco de dados
 $servername = "localhost";
-$username = "registo_ocorrencias";
+$username = "root";
 $password = "";
 $dbname = "registo";
 
@@ -13,7 +13,7 @@ if ($conn->connect_error) {
 }
 
 // Consulta para buscar os dados
-$sql = "SELECT status, data_regs, local, descricao, nivel_urgencia, data, turno FROM ocorrencias";
+$sql = "SELECT status, data_regs, edificio, piso, sala, descricao, nivel_urgencia, data, turno FROM ocorrencias";
 $result = $conn->query($sql);
 
 // Criar um array para armazenar os dados
@@ -184,7 +184,9 @@ $ocorrencias_json = json_encode($ocorrencias);
                     <div class="status-card">
                         <h3>Status: ${ocorrencia.status}</h3>
                         <p>Data do Registo: ${ocorrencia.data_regs}</p>
-                        <p>Local: ${ocorrencia.local}</p>
+                        <p>Edificio: ${ocorrencia.edificio}</p>
+                        <p>Piso: ${ocorrencia.piso}</p>
+                        <p>Sala: ${ocorrencia.sala}</p>
                         <div class="description-box">Descrição: ${ocorrencia.descricao}</div>
                         <p>Nível de Urgência: ${ocorrencia.nivel_urgencia}</p>
                         <p>Data: ${ocorrencia.data}</p>
