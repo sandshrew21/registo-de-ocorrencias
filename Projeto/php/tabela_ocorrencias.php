@@ -147,7 +147,7 @@
             <tbody>
                 <?php
                     // Conexão com o banco de dados
-                    $conn = new mysqli('192.168.12.73', 'registo_ocorrencias', '', 'registo');
+                    $conn = new mysqli('localhost', 'root', '', 'registo');
                     if ($conn->connect_error) {
                         die("Falha na conexão: " . $conn->connect_error);
                     }
