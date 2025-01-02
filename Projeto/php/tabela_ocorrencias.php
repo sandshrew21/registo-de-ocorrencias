@@ -137,7 +137,9 @@
                 <tr>
                     <th>Status</th>
                     <th>Data do Registo</th>
-                    <th>Local</th>
+                    <th>Edificio</th>
+                    <th>Piso</th>
+                    <th>Sala</th>
                     <th>Nível de Urgência</th>
                     <th>Turno</th>
                     <th>Descrição</th>
@@ -152,7 +154,7 @@
                         die("Falha na conexão: " . $conn->connect_error);
                     }
 
-                    $sql = "SELECT status, data_regs, local, nivel_urgencia, turno, descricao FROM ocorrencias";
+                    $sql = "SELECT status, data_regs, edificio, piso, sala, nivel_urgencia, turno, descricao FROM ocorrencias";
                     $result = $conn->query($sql);
 
                     if ($result->num_rows > 0) {
@@ -160,7 +162,9 @@
                             echo "<tr>
                                 <td>{$row['status']}</td>
                                 <td>{$row['data_regs']}</td>
-                                <td>{$row['local']}</td>
+                                <td>{$row['edificio']}</td>
+                                <td>{$row['piso']}</td>
+                                <td>{$row['sala']}</td>
                                 <td>{$row['nivel_urgencia']}</td>
                                 <td>{$row['turno']}</td>
                                 <td>{$row['descricao']}</td>
