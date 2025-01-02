@@ -45,7 +45,7 @@ $ocorrencias_json = json_encode($ocorrencias);
             align-items: center;
             height: 100vh;
             align-items: flex-start;
-            overflow: hidden; /* Evita scroll na página principal */
+            overflow: hidden;
         }
 
         .form-container {
@@ -76,8 +76,7 @@ $ocorrencias_json = json_encode($ocorrencias);
             padding: 10px 20px;
         }
 
-        .butoes_filtro input,
-        .butoes_filtro button {
+        .butoes_filtro input {
             background-color: #A7A9AC;
             color: white;
             border: none;
@@ -87,9 +86,12 @@ $ocorrencias_json = json_encode($ocorrencias);
             cursor: pointer;
         }
 
-        .butoes_filtro input:hover,
-        .butoes_filtro button:hover {
-            background-color: #BDBEBF;
+        .butoes_filtro input.active {
+            background-color: #CFD0D1;
+        }
+        
+        .butoes_filtro input:hover {
+            background-color: #CFD0D1;
         }
 
         .menu_button {
@@ -113,8 +115,8 @@ $ocorrencias_json = json_encode($ocorrencias);
         }
 
         .status-container {
-            max-height: 400px; /* Altura máxima do contêiner */
-            overflow-y: auto; /* Scroll vertical */
+            max-height: 400px;
+            overflow-y: auto;
             border: 1px solid #ddd;
             padding: 10px;
             border-radius: 5px;
@@ -148,29 +150,45 @@ $ocorrencias_json = json_encode($ocorrencias);
         <h1>Ocorrências</h1>
 
         <div class="menu_button">
-            <button onclick="window.location.href='http://localhost/Registo%20Ocorrencias/registo-de-ocorrencias/Projeto/html/menu_admin.html'">Menu</button>
+            <button onclick="window.location.href = '../html/login.html'">Menu</button>
         </div>
 
         <div class="butoes_filtro">
-            <label><input type="button" value="Resolvido"></label>
-            <label><input type="button" value="Em Andamento"></label>
-            <label><input type="button" value="Pendente"></label>
+            <input type="button" value="Resolvido" onclick="toggleFilter('Resolvido', this)">
+            <input type="button" value="Em Andamento" onclick="toggleFilter('Em Andamento', this)">
+            <input type="button" value="Pendente" onclick="toggleFilter('Pendente', this)">
         </div>
 
-        <!-- Contêiner com scroll -->
-        <div class="status-container" id="status-container">
-            <!-- Os cartões serão renderizados aqui -->
-        </div>
+        <div class="status-container" id="status-container"></div>
     </div>
 
     <script>
-        // Converte os dados PHP para um array JavaScript
         const ocorrencias = <?php echo $ocorrencias_json; ?>;
-
-        // Elemento DOM onde os cartões serão renderizados
         const statusContainer = document.getElementById('status-container');
+        let activeFilters = [];
 
-        // Função para renderizar os cartões
+        function toggleFilter(status, button) {
+            const index = activeFilters.indexOf(status);
+
+            if (index === -1) {
+                activeFilters.push(status);
+                button.classList.add('active');
+            } else {
+                activeFilters.splice(index, 1);
+                button.classList.remove('active');
+            }
+
+            filterAndRender();
+        }
+
+        function filterAndRender() {
+            const filtered = activeFilters.length > 0 
+                ? ocorrencias.filter(oc => activeFilters.includes(oc.status)) 
+                : ocorrencias;
+
+            renderOcorrencias(filtered);
+        }
+
         function renderOcorrencias(ocorrencias) {
             statusContainer.innerHTML = '';
 
@@ -197,27 +215,26 @@ $ocorrencias_json = json_encode($ocorrencias);
             });
         }
 
-        // Renderiza as ocorrências ao carregar a página
-        renderOcorrencias(ocorrencias);
 
-        // Configura o botão do menu
         const urlParams = new URLSearchParams(window.location.search);
         const menuType = urlParams.get('menu'); 
 
-        const menuButton = document.getElementById('menuButton');
+        const menuButton = document.querySelector('.menu_button button');
 
         if (menuType === 'admin') {
-            menuButton.onclick = () => window.location.href = 'menu_admin.html';
+            menuButton.onclick = () => window.location.href = '../html/menu_admin.html';
         } else if (menuType === 'user') {
-            menuButton.onclick = () => window.location.href = 'menu_user.html';
+            menuButton.onclick = () => window.location.href = '../html/menu_user.html';
         } else {
-            menuButton.onclick = () => window.location.href = 'login.html';
+            menuButton.onclick = () => window.location.href = '../html/login.html';
         }
+    
+
+        renderOcorrencias(ocorrencias);
     </script>
 </body>
 </html>
 
 <?php
-// Fecha a conexão com o banco de dados
 $conn->close();
 ?>
