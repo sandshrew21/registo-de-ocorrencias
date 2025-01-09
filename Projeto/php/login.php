@@ -1,4 +1,12 @@
 <?php
+ini_set('display_errors', 1);
+error_reporting(E_ALL);
+
+// Start the session
+session_start();
+
+// Initialize error message
+$errorMessage = 'Os dados introduzidos não existem ou estão errados';
 
 // Verificar se o formulário foi enviado
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -21,51 +29,56 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     // Validações
     if (empty($email) || empty($senha)) {
-        die("Por favor, preencha todos os campos.");
-    }
+        $_SESSION['errorMessage'] = "Por favor, preencha todos os campos.";
+    } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        $_SESSION['errorMessage'] = "E-mail inválido.";
+    } else {
+        // Verificar o usuário no banco de dados
+        $sql = "SELECT id_formador, senha FROM registo_formadores WHERE email = ?";
+        $stmt = $conn->prepare($sql);
 
-    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        die("E-mail inválido.");
-    }
+        if ($stmt === false) {
+            die("Erro na preparação da consulta: " . $conn->error);
+        }
 
-    // Verificar o usuário no banco de dados
-    $sql = "SELECT id_formador, senha FROM registo_formadores WHERE email = ?";
-    $stmt = $conn->prepare($sql);
+        $stmt->bind_param("s", $email);
+        $stmt->execute();
+        $result = $stmt->get_result();
 
-    if ($stmt === false) {
-        die("Erro na preparação da consulta: " . $conn->error);
-    }
+        if ($result->num_rows === 1) {
+            $row = $result->fetch_assoc();
 
-    $stmt->bind_param("s", $email);
-    $stmt->execute();
-    $result = $stmt->get_result();
+            // Verificar a senha usando password_verify()
+            $passwordCheck = password_verify($senha, $row['senha']);
 
-    if ($result->num_rows === 1) {
-        $row = $result->fetch_assoc();
-
-        // Verificar a senha
-        if (password_verify($senha, $row['senha'])) {
-            echo "Login bem-sucedido!";
-            // Aqui você pode iniciar a sessão ou redirecionar para outra página
-            session_start();
-            if ($row['id_formador']==9) {
+            if ($passwordCheck) {
+                // Login bem-sucedido
                 $_SESSION['user_id'] = $row['id_formador'];
-                header("Location: ../html/menu_admin.html"); // Altere para a página desejada
-                exit;
-            }else{
-            $_SESSION['user_id'] = $row['id_formador'];
-            header("Location: ../html/menu_user.html"); // Altere para a página desejada
-            exit;
+
+                // Redirect after successful login (Admin or User)
+                if ($row['id_formador'] == 1) {
+                    header("Location: ../html/menu_admin.html");
+                    exit;
+                } else {
+                    header("Location: ../html/menu_user.html");
+                    exit;
+                }
+            } else {
+                $_SESSION['errorMessage'] = "Senha incorreta.";
             }
         } else {
-            echo "Senha incorreta.";
+            $_SESSION['errorMessage'] = "Usuário não encontrado.";
         }
-    } else {
-        echo "Usuário não encontrado.";
+
+        // Fechar a conexão
+        $stmt->close();
+        $conn->close();
     }
 
-    // Fechar a conexão
-    $stmt->close();
-    $conn->close();
+    // Redirect back to the login page with the error message
+    if (isset($_SESSION['errorMessage'])) {
+        header("Location: ../html/login.html");
+        exit;
+    }
 }
 ?>

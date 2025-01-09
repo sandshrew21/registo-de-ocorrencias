@@ -35,7 +35,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     // Hash da senha
-    $senhaHash = password_mb5($senha, PASSWORD_BCRYPT);
+    $senhaHash = password_hash($senha, PASSWORD_DEFAULT);
 
     // Inserir os dados no banco de dados
     $sql = "INSERT INTO registo_formadores (nome, email, senha) VALUES (?, ?, ?)";
