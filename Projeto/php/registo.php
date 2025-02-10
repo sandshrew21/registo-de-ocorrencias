@@ -6,7 +6,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $servername = "localhost"; // Altere para o nome do servidor
     $username = "root"; // Altere para o nome de usuário do banco de dados
     $password = ""; // Altere para a senha do banco de dados
-    $dbname = "registo"; // Altere para o nome do seu banco de dados
+    $dbname = "registo_ocorrencias"; // Altere para o nome do seu banco de dados
 
     $conn = new mysqli($servername, $username, $password, $dbname);
 
@@ -38,7 +38,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $senhaHash = password_hash($senha, PASSWORD_DEFAULT);
 
     // Inserir os dados no banco de dados
-    $sql = "INSERT INTO registo_formadores (nome, email, senha) VALUES (?, ?, ?)";
+    $sql = "INSERT INTO users (nome, email, senha) VALUES (?, ?, ?)";
     $stmt = $conn->prepare($sql);
 
     if ($stmt === false) {

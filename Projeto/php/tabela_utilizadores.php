@@ -3,7 +3,7 @@
 $servername = "localhost";
 $username = "root";
 $password = "";
-$dbname = "registo";
+$dbname = "registo_ocorrencias";
 
 $conn = new mysqli($servername, $username, $password, $dbname);
 
@@ -13,7 +13,7 @@ if ($conn->connect_error) {
 }
 
 // Consulta para buscar os dados
-$sql = "SELECT id_formador, nome, email, senha FROM registo_formadores";
+$sql = "SELECT id_user, nome, email, senha FROM users";
 $result = $conn->query($sql);
 
 // Criar um array para armazenar os dados
@@ -66,7 +66,7 @@ $usuarios_json = json_encode($usuarios);
                     // Exibe os dados iniciais da tabela
                     foreach ($usuarios as $usuario) {
                         echo "<tr>";
-                        echo "<td>" . $usuario['id_formador'] . "</td>";
+                        echo "<td>" . $usuario['id_user'] . "</td>";
                         echo "<td>" . $usuario['nome'] . "</td>";
                         echo "<td>" . $usuario['email'] . "</td>";
                         echo "<td>" . $usuario['senha'] . "</td>";
@@ -101,7 +101,7 @@ $usuarios_json = json_encode($usuarios);
             usuariosFiltrados.forEach(usuario => {
                 const linha = `
                     <tr>
-                        <td>${usuario.id_formador}</td>
+                        <td>${usuario.id_user}</td>
                         <td>${usuario.nome}</td>
                         <td>${usuario.email}</td>
                         <td>${usuario.senha}</td>
