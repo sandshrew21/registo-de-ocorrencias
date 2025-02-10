@@ -46,7 +46,7 @@
         $servername = "localhost";
         $username = "root";
         $password = "";
-        $dbname = "registo";
+        $dbname = "registo_ocorrencias";
 
         $conn = new mysqli($servername, $username, $password, $dbname);
         if ($conn->connect_error) {
@@ -54,7 +54,7 @@
         }
 
         // Consultar categorias
-        $sql_categorias = "SELECT id_categoria, categoria FROM categorias";
+        $sql_categorias = "SELECT id_tipo, tipo FROM tipo_user";
         $result_categorias = $conn->query($sql_categorias);
 
         // Consultar status
@@ -70,7 +70,7 @@
         $result_pisos = $conn->query($sql_pisos);
 
         // Consultar salas
-        $sql_salas = "SELECT id_salas, cod_sala, salas FROM salas";
+        $sql_salas = "SELECT cod_sala, salas FROM salas";
         $result_salas = $conn->query($sql_salas);
 
         // Consultar niveis de urgencias
@@ -92,7 +92,7 @@
                     <?php
                     if ($result_categorias->num_rows > 0) {
                         while ($row = $result_categorias->fetch_assoc()) {
-                            echo "<option value='" . $row['id_categoria'] . "'>" . $row['categoria'] . "</option>";
+                            echo "<option value='" . $row['id_tipo'] . "'>" . $row['tipo'] . "</option>";
                         }
                     }
                     ?>
@@ -166,7 +166,7 @@
                     <?php
                     if ($result_salas->num_rows > 0) {
                         while ($row = $result_salas->fetch_assoc()) {
-                            echo "<option value='" . $row['id_salas'] . "'>" . $row['cod_sala'] . "-" . $row['salas'] . "</option>";
+                            echo "<option value='" . $row['cod_sala'] . "'>" . $row['salas'] . "</option>";
                         }
                     }
                     ?>

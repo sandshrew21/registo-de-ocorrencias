@@ -147,12 +147,12 @@
             <tbody>
                 <?php
                     // Conexão com o banco de dados
-                    $conn = new mysqli('localhost', 'root', '', 'registo');
+                    $conn = new mysqli('localhost', 'root', '', 'registo_ocorrencias');
                     if ($conn->connect_error) {
                         die("Falha na conexão: " . $conn->connect_error);
                     }
 
-                    $sql = "SELECT status, data_regs, local, nivel_urgencia, turno, descricao FROM ocorrencias";
+                    $sql = "SELECT status, data_regs, nivel_urgencia, turno, descricao FROM ocorrencias";
                     $result = $conn->query($sql);
 
                     if ($result->num_rows > 0) {
@@ -160,7 +160,7 @@
                             echo "<tr>
                                 <td>{$row['status']}</td>
                                 <td>{$row['data_regs']}</td>
-                                <td>{$row['local']}</td>
+                                
                                 <td>{$row['nivel_urgencia']}</td>
                                 <td>{$row['turno']}</td>
                                 <td>{$row['descricao']}</td>
@@ -192,7 +192,7 @@
             let status = row.cells[0].innerText;
             let urgency = row.cells[3].innerText;
             let description = row.cells[5].innerText.toLowerCase();
-            let local = row.cells[2].innerText.toLowerCase();
+            
 
             let statusMatch = (statusFilter === 'all' || status === statusFilter);
             let urgencyMatch = (urgencyFilter === 'all' || urgency === urgencyFilter);
