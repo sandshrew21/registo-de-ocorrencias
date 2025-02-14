@@ -252,69 +252,39 @@
             </div>
         </div>
     </div>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script>
         function toggleDropdown() {
             const dropdown = document.getElementById('dropdownMenu');
             dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
         }
 
-        async function fetchDashboardData() {
-            try {
-                const response = await fetch('../php/api_dashboard_data.php'); // API para buscar os dados
-                const data = await response.json();
-
-                document.getElementById('extremamente-urgente').textContent = data.extremamenteUrgente || 0;
-                document.getElementById('muito-urgente').textContent = data.muitoUrgente || 0;
-                document.getElementById('urgente').textContent = data.urgente || 0;
-                document.getElementById('pouco-urgente').textContent = data.poucoUrgente || 0;
-                document.getElementById('nao-urgente').textContent = data.naoUrgente || 0;
-            } catch (error) {
-                console.error('Erro ao buscar dados:', error);
-            }
-        }
-
-        async function fetchChartData() {
-            try {
-                const response = await fetch('../php/api_chart_data.php');
-                const data = await response.json();
-
-                const labels = data.map(item => item.mes);
-                const ocorrencias = data.map(item => item.ocorrencias);
-                const concluidas = data.map(item => item.concluidas);
-
-                const ctx = document.getElementById('myChart');
-                new Chart(ctx, {
-                    type: 'line',
-                    data: {
-                        labels,
-                        datasets: [
-                            {
-                                label: 'Ocorrências',
-                                data: ocorrencias,
-                                borderWidth: 2,
-                                borderColor: 'rgba(146,39,143,255)',
-                                backgroundColor: 'rgba(146,39,143,0.2)',
-                            },
-                            {
-                                label: 'Concluídas',
-                                data: concluidas,
-                                borderWidth: 2,
-                                borderColor: 'rgba(15,175,161,255)',
-                                backgroundColor: 'rgba(15,175,161,0.2)',
-                            }
-                        ]
+        const ctx = document.getElementById('myChart');
+        new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'],
+                datasets: [
+                    {
+                        label: 'Ocorrências',
+                        data: [12, 19, 3, 5, 2, 3, 8, 15, 9, 12, 7, 10],
+                        borderWidth: 2,
+                        borderColor: 'rgba(146,39,143,255)',
+                        backgroundColor: 'rgba(146,39,143,0.2)',
                     },
-                    options: { scales: { y: { beginAtZero: true } } }
-                });
+                    {
+                        label: 'Ocorrência Concluídas',
+                        data: [1, 9, 5, 2, 3, 15, 50, 60, 35, 40, 20, 25],
+                        borderWidth: 2,
+                        borderColor: 'rgba(15,175,161,255)',
+                        backgroundColor: 'rgba(15,175,161,0.2)',
+                    }
+                ]
+            },
+            options: { scales: { y: { beginAtZero: true } } }
+        });
 
-                document.querySelector('.year-label').textContent = new Date().getFullYear();
-            } catch (error) {
-                console.error('Erro ao buscar dados:', error);
-            }
-        }
-
-        fetchDashboardData();
-        fetchChartData();
+        document.querySelector('.year-label').textContent = new Date().getFullYear();
     </script>
 </body>
 </html>
