@@ -34,7 +34,7 @@ $usuarios_json = json_encode($usuarios);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tabela de Utilizadores</title>
-    <link rel="stylesheet" href="estilos.css">
+    <link rel="stylesheet" href="../html/estilos.css">
 </head>
 <body>
     <div class="container">

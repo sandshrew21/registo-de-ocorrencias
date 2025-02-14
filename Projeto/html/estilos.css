@@ -1,7 +1,7 @@
 /* Estilos gerais */
 body {
     font-family: Arial, sans-serif;
-    background-color: #e5e5e5;
+    background-color: #f4f4f9;
     margin: 0;
     padding: 0;
     display: flex;
@@ -13,10 +13,13 @@ body {
 /* Container principal */
 .container {
     background-color: #f9f9f9;
-    padding: 20px;
-    border-radius: 10px;
+    padding-top: 50px;
+    padding-left: 50px;
+    padding-right: 50px;
+    padding-bottom: 20px;
+    border-radius: 50px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    width: 600px;
+    width: 60%;
 }
 
 /* Botão Menu */
@@ -25,7 +28,7 @@ body {
     margin-bottom: 20px;
     background-color: #ccc;
     border: none;
-    padding: 10px 20px;
+    padding: 5px 20px;
     border-radius: 5px;
     cursor: pointer;
 }
@@ -69,7 +72,7 @@ body {
 
 /* tabela com rolagem */
 .tabela-container {
-    max-height: 200px; 
+    max-height: 500px; 
     overflow-y: auto; 
     border: 1px solid #ddd; 
     scrollbar-width: thin; 
