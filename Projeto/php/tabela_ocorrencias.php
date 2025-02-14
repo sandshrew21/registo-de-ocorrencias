@@ -158,9 +158,6 @@
                     $sql = "SELECT tipo_user.tipo, status.status, ocorrencias.data_regs, edificios.edificio,turnos.turno, salas.salas, ocorrencias.descricao, urgencias.urgencia, ocorrencias.data FROM ocorrencias INNER JOIN tipo_user ON ocorrencias.categoria_prof = tipo_user.id_tipo INNER JOIN status ON ocorrencias.status = status.id_status INNER JOIN edificios ON ocorrencias.edificio = edificios.id_edificio INNER JOIN piso ON ocorrencias.piso = piso.id_piso INNER JOIN salas ON ocorrencias.sala = salas.cod_sala INNER JOIN urgencias ON ocorrencias.nivel_urgencia = urgencias.id_urgencia INNER JOIN turnos ON ocorrencias.turno = turnos.id_turno;";
                     $result = $conn->query($sql);
 
-                    //$remove = "DELETE FROM ocorrencias WHERE id_ocorrencia = ";
-                    //$resultremove = $conn->query($remove);
-
                     if ($result->num_rows > 0) {
                         while ($row = $result->fetch_assoc()) {
                             echo "<tr>
@@ -188,28 +185,27 @@
 
 <script>
     function filterTable() {
-        let statusFilter = document.getElementById('status-filter').value;
-        let urgencyFilter = document.getElementById('urgency-filter').value;
-        let searchQuery = document.getElementById('search-input').value.toLowerCase();
-        let rows = document.querySelectorAll('#occurrences-table tbody tr');
+    let statusFilter = document.getElementById('status-filter').value;
+    let urgencyFilter = document.getElementById('urgency-filter').value;
+    let searchQuery = document.getElementById('search-input').value.toLowerCase();
+    let rows = document.querySelectorAll('#occurrences-table tbody tr');
 
-        rows.forEach(row => {
-            let status = row.cells[0].innerText;
-            let urgency = row.cells[6].innerText;
-            let description = row.cells[5].innerText.toLowerCase();
-            
+    rows.forEach(row => {
+        let status = row.cells[1].innerText.trim(); 
+        let urgency = row.cells[7].innerText.trim(); 
+        let description = row.cells[6].innerText.toLowerCase();
+        
+        let statusMatch = (statusFilter === 'all' || status === statusFilter);
+        let urgencyMatch = (urgencyFilter === 'all' || urgency === urgencyFilter);
+        let searchMatch = description.includes(searchQuery); 
 
-            let statusMatch = (statusFilter === 'all' || status === statusFilter);
-            let urgencyMatch = (urgencyFilter === 'all' || urgency === urgencyFilter);
-            let searchMatch = (description.includes(searchQuery);
-
-            if (statusMatch && urgencyMatch && searchMatch) {
-                row.style.display = '';
-            } else {
-                row.style.display = 'none';
-            }
-        });
-    }
+        if (statusMatch && urgencyMatch && searchMatch) {
+            row.style.display = '';
+        } else {
+            row.style.display = 'none';
+        }
+    });
+}
 
     function changeStatus(button) {
         let row = button.parentElement.parentElement;
