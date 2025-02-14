@@ -34,12 +34,12 @@ $usuarios_json = json_encode($usuarios);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tabela de Utilizadores</title>
-    <link rel="stylesheet" href="../html/estilos.css">
+    <link rel="stylesheet" href="estilos.css">
 </head>
 <body>
     <div class="container">
         <div class="btn-container">
-            <button onclick="window.location.href='../html/menu_admin.html'">Menu</button>
+            <button onclick="window.location.href='../html/menu_admin.html'"class="btn_menu">Menu</button>
         </div>
         <div class="form">
             <input type="text" placeholder="Pesquisar..." class="search-bar" id="search-bar">

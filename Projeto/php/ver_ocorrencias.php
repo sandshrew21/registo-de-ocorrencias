@@ -46,6 +46,7 @@ $ocorrencias_json = json_encode($ocorrencias);
             height: 100vh;
             align-items: flex-start;
             overflow: hidden;
+
         }
 
         .form-container {
@@ -147,11 +148,11 @@ $ocorrencias_json = json_encode($ocorrencias);
 </head>
 <body>
     <div class="form-container">
-        <h1>Ocorrências</h1>
-
         <div class="menu_button">
             <button onclick="window.location.href = '../html/login.html'">Menu</button>
         </div>
+
+        <h1>Ocorrências</h1>
 
         <div class="butoes_filtro">
             <input type="button" value="Resolvido" onclick="toggleFilter('Resolvido', this)">

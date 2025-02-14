@@ -5,17 +5,72 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Criar Ocorrência</title>
     <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            height: 100vh;
+            align-items: flex-start;
+            overflow-y: auto;  /* Permite rolagem quando o zoom for aplicado */
+            padding-top: 2%;
+        }
         .login-container {
-            max-width: 400px;
-            margin: auto;
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             padding: 20px;
-            border: 1px solid #ccc;
-            border-radius: 10px;
-            background-color: #f9f9f9;
+            max-width: 500px;
+            width: 100%;
+            justify-content: center;
         }
         .form-group {
             margin-bottom: 15px;
         }
+
+        select,input,textarea {
+            background-color: #F4F4F9; 
+            color: #000; 
+
+        }
+
+        select.selected {
+            color: #000; 
+        }
+
+        textarea{
+            width: 100%;  
+            height: 100px;  
+            min-height: 100px; 
+            resize: vertical; 
+            overflow-y: auto; 
+            overflow-x: hidden; 
+        }
+
+        .menu_button {
+            display: flex;
+            justify-content: flex-start;
+            margin-bottom: 15px;
+            width: 15%;
+        }
+
+        .menu_button button {
+            background-color: #A7A9AC;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .menu_button button:hover {
+            background-color: #BDBEBF;
+        }
+
+
         label {
             display: block;
             margin-bottom: 5px;
@@ -27,20 +82,27 @@
             box-sizing: border-box;
         }
         button {
-            background-color: #4CAF50;
+            background-color: #A7A9AC;
             color: white;
+            padding: 10px 15px;
             border: none;
-            padding: 10px 20px;
+            border-radius: 5px;
+            font-size: 16px;
             cursor: pointer;
         }
         button:hover {
-            background-color: #45a049;
+            background-color: #BDBEBF;
         }
     </style>
 </head>
 <body>
     <div class="login-container">
+        <div class="menu_button">
+            <button onclick="window.location.href = '../html/login.html'">Menu</button>
+        </div>
+
         <h1>Criar Ocorrência</h1>
+
         <?php
         // Conexão com o banco
         $servername = "localhost";
@@ -204,5 +266,20 @@
             </div>
         </form>
     </div>
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const menuType = urlParams.get('menu'); 
+
+        const menuButton = document.querySelector('.menu_button button');
+
+        if (menuType === 'admin') {
+            menuButton.onclick = () => window.location.href = '../html/menu_admin.html';
+        } else if (menuType === 'user') {
+            menuButton.onclick = () => window.location.href = '../html/menu_user.html';
+        } else {
+            menuButton.onclick = () => window.location.href = '../html/login.html';
+        }
+    </script>
 </body>
+
 </html>

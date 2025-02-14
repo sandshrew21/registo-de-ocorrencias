@@ -12,8 +12,10 @@
             padding: 0;
             display: flex;
             justify-content: center;
-            align-items: center;
             height: 100vh;
+            align-items: flex-start;
+            overflow-y: auto;  /* Permite rolagem quando o zoom for aplicado */
+            padding-top: 2%;
         }
 
         .container {

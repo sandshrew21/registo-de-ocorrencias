@@ -6,8 +6,10 @@ body {
     padding: 0;
     display: flex;
     justify-content: center;
-    align-items: center;
     height: 100vh;
+    align-items: flex-start;
+    overflow-y: auto;
+    padding-top: 2%;
 }
 
 /* Container principal */
@@ -16,18 +18,7 @@ body {
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    width: 600px;
-}
-
-/* Botão Menu */
-.menu-btn {
-    display: block;
-    margin-bottom: 20px;
-    background-color: #ccc;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 5px;
-    cursor: pointer;
+    width: 1200px;
 }
 
 /* Formulário lateral */
@@ -53,6 +44,20 @@ body {
 }
 
 /* Botões */
+.btn_menu {
+    background-color: #A7A9AC;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    width: auto;
+}
+.btn_menu:hover {
+    background-color: #BDBEBF;
+}
+
+
 .btn {
     background-color: #A7A9AC;
     color: white;
