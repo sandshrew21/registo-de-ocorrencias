@@ -124,12 +124,13 @@
         <label for="urgency-filter">Filtrar por Urgência:</label>
         <select id="urgency-filter" onchange="filterTable()">
             <option value="all">Todos</option>
-            <option value="1">1 (Urgente)</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5 (Baixa)</option>
+            <option value="1-Não Urgente">1-Não Urgente</option>
+            <option value="2-Pouco Urgente">2-Pouco Urgente</option>
+            <option value="3-Urgente">3-Urgente</option>
+            <option value="4-Muito Urgente">4-Muito Urgente</option>
+            <option value="5-Extremamente Urgente">5-Extremamente Urgente</option>
         </select>
+
     </div>
 
     <!-- Tabela de ocorrências -->
@@ -137,13 +138,15 @@
         <table id="occurrences-table">
             <thead>
                 <tr>
+                    <th>Cargo</th>
                     <th>Status</th>
                     <th>Data do Registo</th>
-                    <th>Local</th>
-                    <th>Nível de Urgência</th>
+                    <th>Edificio</th>
                     <th>Turno</th>
+                    <th>Sala</th>
                     <th>Descrição</th>
-                    <th>Ações</th>
+                    <th>Nível de Urgência</th>
+                    <th>Data da Ocorrencia</th>
                 </tr>
             </thead>
             <tbody>
@@ -154,22 +157,21 @@
                         die("Falha na conexão: " . $conn->connect_error);
                     }
 
-                    $sql = "SELECT status, data_regs, nivel_urgencia, turno, descricao FROM ocorrencias";
+                    $sql = "SELECT tipo_user.tipo, status.status, ocorrencias.data_regs, edificios.edificio,turnos.turno, salas.salas, ocorrencias.descricao, urgencias.urgencia, ocorrencias.data FROM ocorrencias INNER JOIN tipo_user ON ocorrencias.categoria_prof = tipo_user.id_tipo INNER JOIN status ON ocorrencias.status = status.id_status INNER JOIN edificios ON ocorrencias.edificio = edificios.id_edificio INNER JOIN piso ON ocorrencias.piso = piso.id_piso INNER JOIN salas ON ocorrencias.sala = salas.cod_sala INNER JOIN urgencias ON ocorrencias.nivel_urgencia = urgencias.id_urgencia INNER JOIN turnos ON ocorrencias.turno = turnos.id_turno;";
                     $result = $conn->query($sql);
 
                     if ($result->num_rows > 0) {
                         while ($row = $result->fetch_assoc()) {
                             echo "<tr>
+                                <td>{$row['tipo']}</td>
                                 <td>{$row['status']}</td>
                                 <td>{$row['data_regs']}</td>
-                                
-                                <td>{$row['nivel_urgencia']}</td>
+                                <td>{$row['edificio']}</td>
                                 <td>{$row['turno']}</td>
+                                <td>{$row['salas']}</td>
                                 <td>{$row['descricao']}</td>
-                                <td>
-                                    <button class='btn-edit' onclick='changeStatus(this)'>Concluir</button>
-                                    <button class='btn' onclick='removeRow(this)'>Remover</button>
-                                </td>
+                                <td>{$row['urgencia']}</td>
+                                <td>{$row['data']}</td>
                             </tr>";
                         }
                     } else {
@@ -185,28 +187,27 @@
 
 <script>
     function filterTable() {
-        let statusFilter = document.getElementById('status-filter').value;
-        let urgencyFilter = document.getElementById('urgency-filter').value;
-        let searchQuery = document.getElementById('search-input').value.toLowerCase();
-        let rows = document.querySelectorAll('#occurrences-table tbody tr');
+    let statusFilter = document.getElementById('status-filter').value;
+    let urgencyFilter = document.getElementById('urgency-filter').value;
+    let searchQuery = document.getElementById('search-input').value.toLowerCase();
+    let rows = document.querySelectorAll('#occurrences-table tbody tr');
 
-        rows.forEach(row => {
-            let status = row.cells[0].innerText;
-            let urgency = row.cells[3].innerText;
-            let description = row.cells[5].innerText.toLowerCase();
-            
+    rows.forEach(row => {
+        let status = row.cells[1].innerText.trim(); 
+        let urgency = row.cells[7].innerText.trim(); 
+        let description = row.cells[6].innerText.toLowerCase();
+        
+        let statusMatch = (statusFilter === 'all' || status === statusFilter);
+        let urgencyMatch = (urgencyFilter === 'all' || urgency === urgencyFilter);
+        let searchMatch = description.includes(searchQuery); 
 
-            let statusMatch = (statusFilter === 'all' || status === statusFilter);
-            let urgencyMatch = (urgencyFilter === 'all' || urgency === urgencyFilter);
-            let searchMatch = (description.includes(searchQuery) || local.includes(searchQuery));
-
-            if (statusMatch && urgencyMatch && searchMatch) {
-                row.style.display = '';
-            } else {
-                row.style.display = 'none';
-            }
-        });
-    }
+        if (statusMatch && urgencyMatch && searchMatch) {
+            row.style.display = '';
+        } else {
+            row.style.display = 'none';
+        }
+    });
+}
 
     function changeStatus(button) {
         let row = button.parentElement.parentElement;
